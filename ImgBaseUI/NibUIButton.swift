@@ -9,12 +9,16 @@
 import UIKit
 
 open class NibUIButton: UIButton, NibUIBase {
-    weak var containerView: UIView!
-
-    open func commonInit() {
-        containerViewInit()
+    @IBOutlet public weak var containerView: UIView!
+    
+    open var nibName: String {
+        return String(describing: Self.self)
     }
     
+    open var bundle: Bundle? {
+        return nil
+    }
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -23,5 +27,13 @@ open class NibUIButton: UIButton, NibUIBase {
     required public init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
+    }
+    
+    open func commonInit() {
+        containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
+
+        addSubview(containerView)
+        containerView.frame = bounds
+        containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
 }
