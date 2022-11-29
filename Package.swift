@@ -15,7 +15,13 @@ let package = Package(
         .target(
             name: "ImgBaseUI",
             dependencies: [],
-            path: "ImgBaseUI"
+            path: "Sources"
         ),
+        .testTarget(
+            name: "ImgBaseUITests",
+            dependencies: [],
+            path: "Tests"
+        )
+        
     ]
 )
