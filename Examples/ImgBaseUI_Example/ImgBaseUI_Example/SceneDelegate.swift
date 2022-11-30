@@ -2,7 +2,8 @@
 //  SceneDelegate.swift
 //  ImgBaseUI_Example
 //
-//  Created by odong on 2022/11/30.
+//  Created by Dongbin Kim on 2022/11/30.
+//  Copyright © 2022 ImgBase, Inc. All rights reserved.
 //
 
 import UIKit

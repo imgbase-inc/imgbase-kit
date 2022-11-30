@@ -2,7 +2,8 @@
 //  ViewController.swift
 //  ImgBaseUI_Example
 //
-//  Created by odong on 2022/11/30.
+//  Created by Dongbin Kim on 2022/11/30.
+//  Copyright © 2022 ImgBase, Inc. All rights reserved.
 //
 
 import UIKit
@@ -11,11 +12,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private let selection = [
-        "NibUIView",
-        "NibUIButton",
-        "NibUITableViewCell",
-        "NibUICollectionViewCell",
-        "NibUICollectionReusableView"
+        ("NibUIView", CustomNibUIViewController()),
+        ("NibUIButton", CustomNibUIViewController()),
+        ("NibUITableViewCell", CustomNibUIViewController()),
+        ("NibUICollectionViewCell", CustomNibUIViewController()),
+        ("NibUICollectionReusabelView", CustomNibUIViewController())
     ]
     
     override func viewDidLoad() {
@@ -37,7 +38,7 @@ extension ViewController: UITableViewDataSource {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         var configuration = cell.defaultContentConfiguration()
         
-        configuration.text = selection[indexPath.row]
+        configuration.text = selection[indexPath.row].0
         cell.contentConfiguration = configuration
         cell.accessoryType = .disclosureIndicator
         
@@ -47,7 +48,7 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        navigationController?.pushViewController(selection[indexPath.row].1, animated: true)
     }
 }
 
