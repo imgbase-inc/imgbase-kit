@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class NibCollectionReusableView: UICollectionReusableView, NibUIBase {
+open class NibUICollectionReusableView: UICollectionReusableView, NibUIBase {
     @IBOutlet public weak var containerView: UIView!
     
     open var nibName: String {
