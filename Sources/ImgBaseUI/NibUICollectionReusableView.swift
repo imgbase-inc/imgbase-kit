@@ -1,5 +1,5 @@
 //
-//  NibCollectionReusableView.swift
+//  NibUICollectionReusableView.swift
 //  imgbase-kit
 //
 //  Created by Dongbin Kim on 25/11/2022.
