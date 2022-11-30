@@ -23,6 +23,8 @@ class ViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        navigationController?.navigationBar.topItem?.title = "ImgBaseUI"
     }
 }
 
