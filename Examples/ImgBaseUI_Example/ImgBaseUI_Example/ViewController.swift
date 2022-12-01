@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     
     private let selection: [(String, AnyObject)] = [
         ("NibUIView", NibUIViewController()),
-//        ("NibUIButton", CustomNibUIViewController()),
+        ("NibUIButton", NibUIButtonViewController()),
 //        ("NibUITableViewCell", CustomNibUIViewController()),
 //        ("NibUICollectionViewCell", CustomNibUIViewController()),
 //        ("NibUICollectionReusabelView", CustomNibUIViewController())
