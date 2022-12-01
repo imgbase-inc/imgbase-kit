@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     private let selection: [(String, AnyObject)] = [
         ("NibUIView", NibUIViewController()),
         ("NibUIButton", NibUIButtonViewController()),
-//        ("NibUITableViewCell", CustomNibUIViewController()),
+        ("NibUITableViewCell", NibUITableViewCellViewController()),
 //        ("NibUICollectionViewCell", CustomNibUIViewController()),
 //        ("NibUICollectionReusabelView", CustomNibUIViewController())
     ]

@@ -18,6 +18,10 @@ open class NibUITableViewCell: UITableViewCell, NibUIBase {
     open var bundle: Bundle? {
         return nil
     }
+    
+    public static var reuseIdentifier: String {
+        return String(describing: Self.self) + "ReuseIdentifier"
+    }
 
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
