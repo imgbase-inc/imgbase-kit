@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         ("NibUIView", NibUIViewController()),
         ("NibUIButton", NibUIButtonViewController()),
         ("NibUITableViewCell", NibUITableViewCellViewController()),
-//        ("NibUICollectionViewCell", CustomNibUIViewController()),
+        ("NibUICollectionViewCell", NibUICollectionViewCellViewController()),
 //        ("NibUICollectionReusabelView", CustomNibUIViewController())
     ]
     

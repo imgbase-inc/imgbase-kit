@@ -11,6 +11,9 @@
 		B026216E2938516F00F60496 /* CustomNibUITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026216D2938516F00F60496 /* CustomNibUITableViewCell.swift */; };
 		B02621702938517A00F60496 /* CustomNibUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B026216F2938517A00F60496 /* CustomNibUITableViewCell.xib */; };
 		B0262172293851A800F60496 /* NibUITableViewCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0262171293851A800F60496 /* NibUITableViewCellViewController.swift */; };
+		B026217529387B6F00F60496 /* CustomNibUICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026217429387B6F00F60496 /* CustomNibUICollectionViewCell.swift */; };
+		B026217729387B7A00F60496 /* CustomNibUICollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B026217629387B7A00F60496 /* CustomNibUICollectionViewCell.xib */; };
+		B026217929387B8A00F60496 /* NibUICollectionViewCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026217829387B8A00F60496 /* NibUICollectionViewCellViewController.swift */; };
 		B026AEEF29382CE200F92ADA /* NibUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026AEEC29382CE200F92ADA /* NibUIViewController.swift */; };
 		B026AEF029382CE200F92ADA /* CustomNibUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026AEED29382CE200F92ADA /* CustomNibUIView.swift */; };
 		B026AEF129382CE200F92ADA /* CustomNibUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B026AEEE29382CE200F92ADA /* CustomNibUIView.xib */; };
@@ -31,6 +34,9 @@
 		B026216D2938516F00F60496 /* CustomNibUITableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNibUITableViewCell.swift; sourceTree = "<group>"; };
 		B026216F2938517A00F60496 /* CustomNibUITableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNibUITableViewCell.xib; sourceTree = "<group>"; };
 		B0262171293851A800F60496 /* NibUITableViewCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibUITableViewCellViewController.swift; sourceTree = "<group>"; };
+		B026217429387B6F00F60496 /* CustomNibUICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNibUICollectionViewCell.swift; sourceTree = "<group>"; };
+		B026217629387B7A00F60496 /* CustomNibUICollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNibUICollectionViewCell.xib; sourceTree = "<group>"; };
+		B026217829387B8A00F60496 /* NibUICollectionViewCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibUICollectionViewCellViewController.swift; sourceTree = "<group>"; };
 		B026AEEC29382CE200F92ADA /* NibUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibUIViewController.swift; sourceTree = "<group>"; };
 		B026AEED29382CE200F92ADA /* CustomNibUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNibUIView.swift; sourceTree = "<group>"; };
 		B026AEEE29382CE200F92ADA /* CustomNibUIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomNibUIView.xib; sourceTree = "<group>"; };
@@ -68,6 +74,16 @@
 				B0262171293851A800F60496 /* NibUITableViewCellViewController.swift */,
 			);
 			path = NibUITableViewCell;
+			sourceTree = "<group>";
+		};
+		B026217329387B1B00F60496 /* NibUICollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B026217429387B6F00F60496 /* CustomNibUICollectionViewCell.swift */,
+				B026217629387B7A00F60496 /* CustomNibUICollectionViewCell.xib */,
+				B026217829387B8A00F60496 /* NibUICollectionViewCellViewController.swift */,
+			);
+			path = NibUICollectionViewCell;
 			sourceTree = "<group>";
 		};
 		B026AEEB29382CD400F92ADA /* NibUIView */ = {
@@ -118,6 +134,7 @@
 				B026AEEB29382CD400F92ADA /* NibUIView */,
 				B026AEFB2938360100F92ADA /* NibUIButton */,
 				B026216C2938515400F60496 /* NibUITableViewCell */,
+				B026217329387B1B00F60496 /* NibUICollectionViewCell */,
 				B05BD9072936EBE7000A99E3 /* Main.storyboard */,
 				B05BD90A2936EBE7000A99E3 /* Assets.xcassets */,
 				B05BD90C2936EBE7000A99E3 /* LaunchScreen.storyboard */,
@@ -203,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B026216B29383B9D00F60496 /* NibUIButtonViewController.xib in Resources */,
+				B026217729387B7A00F60496 /* CustomNibUICollectionViewCell.xib in Resources */,
 				B05BD90E2936EBE7000A99E3 /* LaunchScreen.storyboard in Resources */,
 				B02621702938517A00F60496 /* CustomNibUITableViewCell.xib in Resources */,
 				B026AEF129382CE200F92ADA /* CustomNibUIView.xib in Resources */,
@@ -224,10 +242,12 @@
 				B026AEFD2938361500F92ADA /* CustomNibUIButton.swift in Sources */,
 				B05BD9022936EBE7000A99E3 /* AppDelegate.swift in Sources */,
 				B05BD9042936EBE7000A99E3 /* SceneDelegate.swift in Sources */,
+				B026217529387B6F00F60496 /* CustomNibUICollectionViewCell.swift in Sources */,
 				B026AF01293836C400F92ADA /* NibUIButtonViewController.swift in Sources */,
 				B026216E2938516F00F60496 /* CustomNibUITableViewCell.swift in Sources */,
 				B0262172293851A800F60496 /* NibUITableViewCellViewController.swift in Sources */,
 				B026AEEF29382CE200F92ADA /* NibUIViewController.swift in Sources */,
+				B026217929387B8A00F60496 /* NibUICollectionViewCellViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
