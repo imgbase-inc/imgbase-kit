@@ -15,8 +15,7 @@ class ViewController: UIViewController {
         ("NibUIView", NibUIViewController()),
         ("NibUIButton", NibUIButtonViewController()),
         ("NibUITableViewCell", NibUITableViewCellViewController()),
-        ("NibUICollectionViewCell", NibUICollectionViewCellViewController()),
-//        ("NibUICollectionReusabelView", CustomNibUIViewController())
+        ("NibUICollectionViewCell", NibUICollectionViewCellViewController())
     ]
     
     override func viewDidLoad() {

@@ -16,7 +16,6 @@ class CustomNibUIView: NibUIView {
         super.commonInit()
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }

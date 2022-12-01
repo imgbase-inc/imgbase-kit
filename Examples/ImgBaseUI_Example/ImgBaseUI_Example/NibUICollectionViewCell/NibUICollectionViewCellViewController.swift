@@ -24,7 +24,6 @@ class NibUICollectionViewCellViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        
         collectionView.register(CustomNibUICollectionViewCell.self, forCellWithReuseIdentifier: CustomNibUICollectionViewCell.reuseIdentifier)
         
         setLayout()
@@ -32,7 +31,6 @@ class NibUICollectionViewCellViewController: UIViewController {
     
     private func setLayout() {
         self.view.addSubview(collectionView)
-        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
