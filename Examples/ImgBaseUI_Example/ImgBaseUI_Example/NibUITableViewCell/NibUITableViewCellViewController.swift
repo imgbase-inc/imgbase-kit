@@ -39,9 +39,10 @@ extension NibUITableViewCellViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CustomNibUITableViewCell.reuseIdentifier, for: indexPath) as! CustomNibUITableViewCell
         
-        cell.titleLabel.text = "Title입니다."
-        cell.subTitleLabel.text = "SubTitle입니다."
+        cell.titleLabel.text = "Title" + " \(indexPath.row)"
+        cell.subTitleLabel.text = "SubTitle"
         cell.myImageView.image = UIImage(systemName: "pencil")
+        cell.myImageView.tintColor = .darkGray
         return cell
     }
 }
