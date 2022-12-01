@@ -18,6 +18,10 @@ open class NibUICollectionViewCell: UICollectionViewCell, NibUIBase {
     open var bundle: Bundle? {
         return nil
     }
+    
+    public static var reuseIdentifier: String {
+        return String(describing: Self.self) + "ReuseIdentifier"
+    }
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
