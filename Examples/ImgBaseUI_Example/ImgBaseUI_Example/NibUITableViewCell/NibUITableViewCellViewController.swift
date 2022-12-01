@@ -37,7 +37,9 @@ extension NibUITableViewCellViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CustomNibUITableViewCell.reuseIdentifier, for: indexPath) as! CustomNibUITableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomNibUITableViewCell.reuseIdentifier, for: indexPath) as? CustomNibUITableViewCell else {
+            fatalError("CustomNibUITableViewCell dequeue reusable cell 을 찾을 수 없습니다.")
+        }
         
         cell.titleLabel.text = "Title" + " \(indexPath.row)"
         cell.subTitleLabel.text = "SubTitle"

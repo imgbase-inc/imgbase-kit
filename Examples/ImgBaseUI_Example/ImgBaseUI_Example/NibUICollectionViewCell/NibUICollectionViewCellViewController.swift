@@ -45,7 +45,9 @@ extension NibUICollectionViewCellViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomNibUICollectionViewCell.reuseIdentifier, for: indexPath) as! CustomNibUICollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomNibUICollectionViewCell.reuseIdentifier, for: indexPath) as? CustomNibUICollectionViewCell else {
+            fatalError("CustomNibUICollectionViewCell dequeue reusable cell 을 찾을 수 없습니다.")
+        }
         
         cell.imageView.image = UIImage(systemName: "pencil")
         cell.imageView.tintColor = .darkGray
