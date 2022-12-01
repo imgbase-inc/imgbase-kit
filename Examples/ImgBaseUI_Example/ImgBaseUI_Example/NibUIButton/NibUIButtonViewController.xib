@@ -12,7 +12,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NibUIButtonViewController" customModule="ImgBaseUI_Example" customModuleProvider="target">
             <connections>
                 <outlet property="customButton" destination="UYk-lU-rec" id="EZJ-s2-WWy"/>
-                <outlet property="label" destination="fzd-3e-IcV" id="rwP-uh-Vy4"/>
                 <outlet property="view" destination="iN0-l3-epB" id="uA6-d8-Hnr"/>
             </connections>
         </placeholder>
@@ -21,24 +20,24 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UYk-lU-rec" customClass="CustomNibUIButton" customModule="ImgBaseUI_Example" customModuleProvider="target">
-                    <rect key="frame" x="57" y="385" width="278" height="83"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UYk-lU-rec" customClass="CustomNibUIButton" customModule="ImgBaseUI_Example" customModuleProvider="target">
+                    <rect key="frame" x="59" y="392.66666666666669" width="275" height="91.666666666666686"/>
                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="UYk-lU-rec" secondAttribute="height" multiplier="3:1" id="uwh-1Y-SmN"/>
+                    </constraints>
                     <connections>
                         <action selector="customButtonAction:" destination="-1" eventType="touchUpInside" id="gjm-ks-fmW"/>
                     </connections>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NibUIButton" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzd-3e-IcV">
-                    <rect key="frame" x="144" y="347" width="93" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="UYk-lU-rec" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="7aP-kd-Vbi"/>
+                <constraint firstItem="UYk-lU-rec" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.7" id="QZD-dV-OME"/>
+                <constraint firstItem="UYk-lU-rec" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="kMV-0C-Syi"/>
+            </constraints>
             <point key="canvasLocation" x="122.90076335877862" y="19.718309859154932"/>
         </view>
     </objects>

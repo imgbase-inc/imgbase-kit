@@ -12,22 +12,20 @@
             <connections>
                 <outlet property="containerView" destination="iN0-l3-epB" id="ZP9-L2-pa0"/>
                 <outlet property="innerView" destination="8Xs-8z-z9h" id="8JJ-ay-wTh"/>
-                <outlet property="label" destination="rga-uc-vo6" id="GOh-x3-R3l"/>
+                <outlet property="label" destination="UUj-dH-u5I" id="EyI-ZS-TaI"/>
             </connections>
         </placeholder>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="519" height="407"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Xs-8z-z9h">
-                    <rect key="frame" x="44" y="59" width="416" height="307"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Xs-8z-z9h">
+                    <rect key="frame" x="10" y="69" width="499" height="294"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rga-uc-vo6">
-                            <rect key="frame" x="154" y="141" width="121" height="24"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Color Button" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUj-dH-u5I">
+                            <rect key="frame" x="169.66666666666666" y="136.66666666666666" width="159.99999999999997" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -36,6 +34,14 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="8Xs-8z-z9h" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="2QC-Zi-2ES"/>
+                <constraint firstItem="UUj-dH-u5I" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="4Pr-P3-TRw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8Xs-8z-z9h" secondAttribute="trailing" constant="10" id="6pF-t0-ALi"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="8Xs-8z-z9h" secondAttribute="top" constant="-10" id="KYO-aF-tuw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="8Xs-8z-z9h" secondAttribute="bottom" constant="10" id="jPI-Bc-736"/>
+                <constraint firstItem="UUj-dH-u5I" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="zf5-rp-dBr"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="153" y="-304"/>
         </view>
