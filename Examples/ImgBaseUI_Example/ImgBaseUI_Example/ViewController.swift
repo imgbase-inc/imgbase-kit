@@ -11,12 +11,12 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    private let selection = [
-        ("NibUIView", CustomNibUIViewController()),
-        ("NibUIButton", CustomNibUIViewController()),
-        ("NibUITableViewCell", CustomNibUIViewController()),
-        ("NibUICollectionViewCell", CustomNibUIViewController()),
-        ("NibUICollectionReusabelView", CustomNibUIViewController())
+    private let selection: [(String, AnyObject)] = [
+        ("NibUIView", NibUIViewController()),
+//        ("NibUIButton", CustomNibUIViewController()),
+//        ("NibUITableViewCell", CustomNibUIViewController()),
+//        ("NibUICollectionViewCell", CustomNibUIViewController()),
+//        ("NibUICollectionReusabelView", CustomNibUIViewController())
     ]
     
     override func viewDidLoad() {
@@ -36,10 +36,8 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        var configuration = cell.defaultContentConfiguration()
-        
-        configuration.text = selection[indexPath.row].0
-        cell.contentConfiguration = configuration
+
+        cell.textLabel?.text = selection[indexPath.row].0
         cell.accessoryType = .disclosureIndicator
         
         return cell
@@ -48,7 +46,8 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(selection[indexPath.row].1, animated: true)
+        guard let viewController = selection[indexPath.row].1 as? UIViewController else { return }
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B05618DD293720FE00A2123B /* CustomNibUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05618DC293720FE00A2123B /* CustomNibUIView.swift */; };
-		B05618DF2937214200A2123B /* CustomNibUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B05618DE2937214200A2123B /* CustomNibUIView.xib */; };
-		B0561912293737A100A2123B /* CustomNibUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0561911293737A100A2123B /* CustomNibUIViewController.swift */; };
+		B026AEEF29382CE200F92ADA /* NibUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026AEEC29382CE200F92ADA /* NibUIViewController.swift */; };
+		B026AEF029382CE200F92ADA /* CustomNibUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026AEED29382CE200F92ADA /* CustomNibUIView.swift */; };
+		B026AEF129382CE200F92ADA /* CustomNibUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B026AEEE29382CE200F92ADA /* CustomNibUIView.xib */; };
 		B05BD9022936EBE7000A99E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05BD9012936EBE7000A99E3 /* AppDelegate.swift */; };
 		B05BD9042936EBE7000A99E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05BD9032936EBE7000A99E3 /* SceneDelegate.swift */; };
 		B05BD9062936EBE7000A99E3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05BD9052936EBE7000A99E3 /* ViewController.swift */; };
@@ -20,9 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B05618DC293720FE00A2123B /* CustomNibUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNibUIView.swift; sourceTree = "<group>"; };
-		B05618DE2937214200A2123B /* CustomNibUIView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNibUIView.xib; sourceTree = "<group>"; };
-		B0561911293737A100A2123B /* CustomNibUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNibUIViewController.swift; sourceTree = "<group>"; };
+		B026AEEC29382CE200F92ADA /* NibUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibUIViewController.swift; sourceTree = "<group>"; };
+		B026AEED29382CE200F92ADA /* CustomNibUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNibUIView.swift; sourceTree = "<group>"; };
+		B026AEEE29382CE200F92ADA /* CustomNibUIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomNibUIView.xib; sourceTree = "<group>"; };
 		B05BD8FE2936EBE7000A99E3 /* ImgBaseUI_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImgBaseUI_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B05BD9012936EBE7000A99E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B05BD9032936EBE7000A99E3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,12 +46,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B017185C29371FB2002EDA26 /* NibUIView */ = {
+		B026AEEB29382CD400F92ADA /* NibUIView */ = {
 			isa = PBXGroup;
 			children = (
-				B05618DC293720FE00A2123B /* CustomNibUIView.swift */,
-				B0561911293737A100A2123B /* CustomNibUIViewController.swift */,
-				B05618DE2937214200A2123B /* CustomNibUIView.xib */,
+				B026AEED29382CE200F92ADA /* CustomNibUIView.swift */,
+				B026AEEE29382CE200F92ADA /* CustomNibUIView.xib */,
+				B026AEEC29382CE200F92ADA /* NibUIViewController.swift */,
 			);
 			path = NibUIView;
 			sourceTree = "<group>";
@@ -80,7 +80,7 @@
 				B05BD9012936EBE7000A99E3 /* AppDelegate.swift */,
 				B05BD9032936EBE7000A99E3 /* SceneDelegate.swift */,
 				B05BD9052936EBE7000A99E3 /* ViewController.swift */,
-				B017185C29371FB2002EDA26 /* NibUIView */,
+				B026AEEB29382CD400F92ADA /* NibUIView */,
 				B05BD9072936EBE7000A99E3 /* Main.storyboard */,
 				B05BD90A2936EBE7000A99E3 /* Assets.xcassets */,
 				B05BD90C2936EBE7000A99E3 /* LaunchScreen.storyboard */,
@@ -166,7 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B05BD90E2936EBE7000A99E3 /* LaunchScreen.storyboard in Resources */,
-				B05618DF2937214200A2123B /* CustomNibUIView.xib in Resources */,
+				B026AEF129382CE200F92ADA /* CustomNibUIView.xib in Resources */,
 				B05BD90B2936EBE7000A99E3 /* Assets.xcassets in Resources */,
 				B05BD9092936EBE7000A99E3 /* Main.storyboard in Resources */,
 			);
@@ -179,11 +179,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B026AEF029382CE200F92ADA /* CustomNibUIView.swift in Sources */,
 				B05BD9062936EBE7000A99E3 /* ViewController.swift in Sources */,
-				B05618DD293720FE00A2123B /* CustomNibUIView.swift in Sources */,
 				B05BD9022936EBE7000A99E3 /* AppDelegate.swift in Sources */,
 				B05BD9042936EBE7000A99E3 /* SceneDelegate.swift in Sources */,
-				B0561912293737A100A2123B /* CustomNibUIViewController.swift in Sources */,
+				B026AEEF29382CE200F92ADA /* NibUIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,6 +338,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -366,6 +367,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
