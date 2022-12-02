@@ -11,10 +11,10 @@ import ImgBaseUI
 
 class CustomNibUIView: NibUIView {
     @IBOutlet weak var label: UILabel!
-    
+
     override func commonInit() {
         super.commonInit()
-        
+
         label.translatesAutoresizingMaskIntoConstraints = false
         label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true

@@ -13,22 +13,22 @@ class NibUICollectionViewCellViewController: UIViewController {
         layout.minimumLineSpacing = 10
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets()
-        
+
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        
+
         return collectionView
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CustomNibUICollectionViewCell.self, forCellWithReuseIdentifier: CustomNibUICollectionViewCell.reuseIdentifier)
-        
+
         setLayout()
     }
-    
+
     private func setLayout() {
         self.view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -43,16 +43,16 @@ extension NibUICollectionViewCellViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         10
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomNibUICollectionViewCell.reuseIdentifier, for: indexPath) as? CustomNibUICollectionViewCell else {
             fatalError("CustomNibUICollectionViewCell dequeue reusable cell 을 찾을 수 없습니다.")
         }
-        
+
         cell.imageView.image = UIImage(systemName: "pencil")
         cell.imageView.tintColor = .darkGray
         cell.label.text = "This is not a pencil."
-        
+
         return cell
     }
 }
@@ -61,7 +61,7 @@ extension NibUICollectionViewCellViewController: UICollectionViewDelegateFlowLay
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width - 30) / 2
         let height = width + 80
-        
+
         return CGSize(width: width, height: height)
     }
 }
