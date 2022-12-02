@@ -10,13 +10,13 @@ import UIKit
 
 class NibUIViewController: UIViewController {
     private let myView = CustomNibUIView()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setLayout()
     }
-    
+
     private func setLayout() {
         self.view.addSubview(myView)
         myView.translatesAutoresizingMaskIntoConstraints = false

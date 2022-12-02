@@ -14,6 +14,7 @@
 		B026217529387B6F00F60496 /* CustomNibUICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026217429387B6F00F60496 /* CustomNibUICollectionViewCell.swift */; };
 		B026217729387B7A00F60496 /* CustomNibUICollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B026217629387B7A00F60496 /* CustomNibUICollectionViewCell.xib */; };
 		B026217929387B8A00F60496 /* NibUICollectionViewCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026217829387B8A00F60496 /* NibUICollectionViewCellViewController.swift */; };
+		B026217B2939853900F60496 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B026217A2939853900F60496 /* .swiftlint.yml */; };
 		B026AEEF29382CE200F92ADA /* NibUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026AEEC29382CE200F92ADA /* NibUIViewController.swift */; };
 		B026AEF029382CE200F92ADA /* CustomNibUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026AEED29382CE200F92ADA /* CustomNibUIView.swift */; };
 		B026AEF129382CE200F92ADA /* CustomNibUIView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B026AEEE29382CE200F92ADA /* CustomNibUIView.xib */; };
@@ -37,6 +38,7 @@
 		B026217429387B6F00F60496 /* CustomNibUICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNibUICollectionViewCell.swift; sourceTree = "<group>"; };
 		B026217629387B7A00F60496 /* CustomNibUICollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNibUICollectionViewCell.xib; sourceTree = "<group>"; };
 		B026217829387B8A00F60496 /* NibUICollectionViewCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibUICollectionViewCellViewController.swift; sourceTree = "<group>"; };
+		B026217A2939853900F60496 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		B026AEEC29382CE200F92ADA /* NibUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibUIViewController.swift; sourceTree = "<group>"; };
 		B026AEED29382CE200F92ADA /* CustomNibUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNibUIView.swift; sourceTree = "<group>"; };
 		B026AEEE29382CE200F92ADA /* CustomNibUIView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomNibUIView.xib; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		B05BD8F52936EBE7000A99E3 = {
 			isa = PBXGroup;
 			children = (
+				B026217A2939853900F60496 /* .swiftlint.yml */,
 				B05BD9152936EC4D000A99E3 /* Packages */,
 				B05BD9002936EBE7000A99E3 /* ImgBaseUI_Example */,
 				B05BD8FF2936EBE7000A99E3 /* Products */,
@@ -220,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B026217B2939853900F60496 /* .swiftlint.yml in Resources */,
 				B026216B29383B9D00F60496 /* NibUIButtonViewController.xib in Resources */,
 				B026217729387B7A00F60496 /* CustomNibUICollectionViewCell.xib in Resources */,
 				B05BD90E2936EBE7000A99E3 /* LaunchScreen.storyboard in Resources */,
@@ -236,6 +240,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		437AF35E29388DCE00FF07B1 /* Run SwiftLint Script */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);

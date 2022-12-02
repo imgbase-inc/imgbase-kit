@@ -9,12 +9,12 @@ import UIKit
 
 class NibUIButtonViewController: UIViewController {
     @IBOutlet weak var customButton: CustomNibUIButton!
-    
+
     private var isWhite: Bool = true
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setBackgroundColor()
         customButton.setColor(isWhite: isWhite)
     }
@@ -24,7 +24,7 @@ class NibUIButtonViewController: UIViewController {
         setBackgroundColor()
         customButton.setColor(isWhite: isWhite)
     }
-    
+
     private func setBackgroundColor() {
         self.view.backgroundColor = self.isWhite ? .white : .darkGray
     }

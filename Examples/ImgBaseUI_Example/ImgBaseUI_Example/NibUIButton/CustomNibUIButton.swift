@@ -11,7 +11,7 @@ import ImgBaseUI
 class CustomNibUIButton: NibUIButton {
     @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var label: UILabel!
-    
+
     func setColor(isWhite: Bool) {
         innerView.backgroundColor = isWhite ? .white : .darkGray
         label.textColor = isWhite ? .darkGray : .white
