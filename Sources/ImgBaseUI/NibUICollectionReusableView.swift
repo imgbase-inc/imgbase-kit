@@ -8,10 +8,10 @@
 
 import UIKit
 
-open class NibUICollectionReusableView: UICollectionReusableView {
+open class NibUICollectionReusableView: UICollectionReusableView, NibUIBase {
     @IBOutlet public weak var containerView: UIView!
-    open var nibName: String? {
-        return nil
+    open var nibName: String {
+        return String(describing: Self.self)
     }
 
     open var bundle: Bundle? {
@@ -29,25 +29,10 @@ open class NibUICollectionReusableView: UICollectionReusableView {
     }
 
     open func commonInit() {
-        if let nibName: String = nibName {
-            if let bundle = bundle {
-                containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
-            } else {
-                Bundle.main.loadNibNamed(nibName, owner: self, options: nil)
-            }
-            addSubview(containerView)
-            containerView.frame = bounds
-            containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        }
-    }
+        containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
 
-    private func viewFromNibForClass(nibName: String, withBundle bundle: Bundle) -> UIView {
-        let nibView: UIView = (UINib.init(nibName: nibName, bundle: bundle).instantiate(withOwner: self, options: nil).first as? UIView)!
-        return nibView
-    }
-
-    public func viewFromNibForClass(nibName: String) -> UIView {
-        let nibView: UIView = (UINib.init(nibName: nibName, bundle: nil).instantiate(withOwner: self, options: nil).first as? UIView)!
-        return nibView
+        addSubview(containerView)
+        containerView.frame = bounds
+        containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
 }
