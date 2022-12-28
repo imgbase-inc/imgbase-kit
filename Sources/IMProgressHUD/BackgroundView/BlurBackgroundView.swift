@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-internal struct BlurView: View {
+internal struct BlurBackgroundView: View {
     private struct BackdropView: UIViewRepresentable {
         func makeUIView(context: Context) -> UIVisualEffectView {
             let view = UIVisualEffectView()

@@ -46,9 +46,9 @@ internal struct IMProgressView: View {
 
     private func background() -> AnyView {
         switch hudSetting.backgroundType {
-        case .none: return AnyView(Color.clear)
-        case .black: return AnyView(Color.black.opacity(0.2))
-        case .blur: return AnyView(BlurView())
+        case .none: return AnyView(ClearBackgroundView())
+        case .black: return AnyView(BlackBackgroundView())
+        case .blur: return AnyView(BlurBackgroundView())
         }
     }
 }
