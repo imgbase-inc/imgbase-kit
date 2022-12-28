@@ -9,29 +9,41 @@
 import SwiftUI
 
 internal struct IMProgressView: View {
-    @EnvironmentObject var hudSetting: HUDSetting
+    @EnvironmentObject private var hudSetting: HUDSetting
+    @EnvironmentObject private var contentViewAnimationAssistant: ContentViewAnimationAssistant
+
+    @State private var animationTime: Double = 0.25
 
     var body: some View {
         ZStack {
             background()
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
 
-            VStack(spacing: 15) {
-                contentImage()
-                    .frame(width: hudSetting.imageViewSize.width, height: hudSetting.imageViewSize.height)
+            if contentViewAnimationAssistant.isPresenting {
+                VStack(spacing: 15) {
+                    contentImage()
+                        .frame(width: hudSetting.imageViewSize.width, height: hudSetting.imageViewSize.height)
 
-                if let text = hudSetting.textString {
-                    Text(text)
-                        .foregroundColor(hudSetting.textColor)
-                        .font(hudSetting.textFont)
+                    if let text = hudSetting.textString {
+                        Text(text)
+                            .foregroundColor(hudSetting.textColor)
+                            .font(hudSetting.textFont)
+                    }
+                }
+                .frame(minWidth: hudSetting.minimumSize.width, minHeight: hudSetting.minimumSize.height)
+                .padding(20)
+                .background(hudSetting.backgroundColor
+                    .clipShape(RoundedRectangle(cornerRadius: hudSetting.cornerRadius)))
+                .transition(.scale(scale: 0.4).combined(with: .opacity))
+                .zIndex(1)
+                .onDisappear() {
+                    contentViewAnimationAssistant.postDisappearNotification()
+                    contentViewAnimationAssistant.removeDisappearObserver()
                 }
             }
-            .frame(minWidth: hudSetting.minimumSize.width, minHeight: hudSetting.minimumSize.height)
-            .padding(20)
-            .background(
-                hudSetting.backgroundColor
-                    .clipShape(RoundedRectangle(cornerRadius: hudSetting.cornerRadius))
-            )
+        }
+        .onAppear() {
+            contentViewAnimationAssistant.showWithAnimation()
         }
     }
 

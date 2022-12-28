@@ -8,13 +8,15 @@
 
 import SwiftUI
 
-public struct IMProgressHUD {
+public class IMProgressHUD {
     @ObservedObject static var hudSetting = HUDSetting()
-
-    private static var isPresenting = false
+    @ObservedObject private static var contentViewPresenter = ContentViewAnimationAssistant()
 
     private static let progressView: UIView = {
-        guard let view = UIHostingController(rootView: IMProgressView().environmentObject(hudSetting)).view else {
+        guard let view = UIHostingController(rootView: IMProgressView()
+            .environmentObject(hudSetting)
+            .environmentObject(contentViewPresenter)
+        ).view else {
             return UIView() // TODO: Error Handling
         }
 
@@ -24,12 +26,11 @@ public struct IMProgressHUD {
     }()
 
     private static func show() {
-        guard !isPresenting else { return }
+        guard !contentViewPresenter.isPresenting else { return }
 
         let mainWindow = UIApplication.shared.windows.first ?? UIWindow()
         mainWindow.addSubview(progressView)
         mainWindow.isUserInteractionEnabled = hudSetting.isUserInteractionEnabled
-        isPresenting = true
     }
 
     public static func show(text: String? = nil, isUserInteractionEnabled: Bool = true, backgroundType: BackgroundType = .none) {
@@ -65,11 +66,14 @@ public struct IMProgressHUD {
     }
 
     public static func dismiss() {
-        guard isPresenting else { return }
+        guard contentViewPresenter.isPresenting else { return }
 
+        contentViewPresenter.addDisappearObserver(self, selector: #selector(dismissProgressView))
+        contentViewPresenter.dismissWithAnimation()
+    }
+
+    @objc private static func dismissProgressView() {
         progressView.removeFromSuperview()
-
-        isPresenting = false
     }
 }
 

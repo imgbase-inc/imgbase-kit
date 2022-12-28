@@ -1,5 +1,5 @@
 //
-//  BackgroundBlackView.swift
+//  BlackBackgroundView.swift
 //  imgbase-kit
 //
 //  Created by Dongbin Kim on 28/12/2022.
