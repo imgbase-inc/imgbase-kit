@@ -21,7 +21,7 @@ public enum BackgroundType {
     case blur
 }
 
-public class HUDSetting: ObservableObject {
+internal class HUDSetting: ObservableObject {
     @Published var contentType: ContentType = .infiniteRing
     @Published var textString: String?
     @Published var textColor: Color = .black.opacity(0.8)
