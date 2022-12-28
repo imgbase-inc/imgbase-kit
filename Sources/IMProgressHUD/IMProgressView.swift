@@ -20,7 +20,7 @@ internal struct IMProgressView: View {
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
 
             if contentViewAnimationAssistant.isPresenting {
-                VStack(spacing: 15) {
+                VStack(spacing: hudSetting.contentsVerticalSpacing) {
                     contentImage()
                         .frame(width: hudSetting.imageViewSize.width, height: hudSetting.imageViewSize.height)
 
