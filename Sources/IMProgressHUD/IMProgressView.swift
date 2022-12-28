@@ -18,7 +18,6 @@ internal struct IMProgressView: View {
 
             VStack(spacing: 15) {
                 contentImage()
-                    .resizable()
                     .frame(width: hudSetting.imageViewSize.width, height: hudSetting.imageViewSize.height)
 
                 if let text = hudSetting.textString {
@@ -28,8 +27,7 @@ internal struct IMProgressView: View {
                 }
             }
             .frame(minWidth: hudSetting.minimumSize.width, minHeight: hudSetting.minimumSize.height)
-            .padding(.horizontal, 20)
-            .padding(.vertical, 15)
+            .padding(20)
             .background(
                 hudSetting.backgroundColor
                     .clipShape(RoundedRectangle(cornerRadius: hudSetting.cornerRadius))
@@ -37,12 +35,12 @@ internal struct IMProgressView: View {
         }
     }
 
-    private func contentImage() -> Image {
+    private func contentImage() -> AnyView {
         switch hudSetting.contentType {
-        case .infiniteRing: return Image(systemName: "circle") // TODO: InfiniteRingView
-        case .image(let img): return img
-        case .success: return hudSetting.successImage
-        case .fail: return hudSetting.errorImage
+        case .infiniteRing: return AnyView(InfinityRingView())
+        case .image(let img): return AnyView(img.resizable())
+        case .success: return AnyView(hudSetting.successImage.resizable())
+        case .fail: return AnyView(hudSetting.errorImage.resizable())
         }
     }
 

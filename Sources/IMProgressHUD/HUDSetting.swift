@@ -31,7 +31,7 @@ public class HUDSetting: ObservableObject {
     @Published var minimumSize: CGSize = .zero
     @Published var imageViewSize: CGSize = CGSize(width: 40, height: 40)
     @Published var cornerRadius: CGFloat = 10
-    @Published var ringThickness: CGFloat = 0
+    @Published var ringThickness: CGFloat = 3
     @Published var successImage: Image = Image(systemName: "checkmark")
     @Published var errorImage: Image = Image(systemName: "xmark.circle")
     @Published var maximumDismissTimeInterval: TimeInterval = 3.0
