@@ -142,4 +142,8 @@ extension IMProgressHUD {
     public static func setContentType(_ type: ContentType) {
         self.hudSetting.contentType = type
     }
+
+    public static func setContentsVerticalSpacing(_ spacing: CGFloat) {
+        self.hudSetting.contentsVerticalSpacing = spacing
+    }
 }
