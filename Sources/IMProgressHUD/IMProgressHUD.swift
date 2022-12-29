@@ -17,7 +17,7 @@ public class IMProgressHUD {
             .environmentObject(hudSetting)
             .environmentObject(contentViewPresenter)
         ).view else {
-            return UIView() // TODO: Error Handling
+            fatalError("ProgressView를 생성할 수 없습니다.")
         }
 
         view.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
