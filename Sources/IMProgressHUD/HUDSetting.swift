@@ -38,11 +38,11 @@ internal class HUDSetting: ObservableObject {
     @Published var successImage: Image = Image(systemName: "checkmark")
     @Published var errorImage: Image = Image(systemName: "xmark.circle")
     @Published var maximumDismissTimeInterval: TimeInterval = 3.0
-    @Published var minimumDismissTimeInterval: TimeInterval = 0.5
+    @Published var minimumDismissTimeInterval: TimeInterval = 1.0
 
     var displayDurationForString: TimeInterval {
         get {
-            let max = max(Double(textString?.count ?? 0) * 0.06 + 0.5, minimumDismissTimeInterval)
+            let max = Double(textString?.count ?? 0) * 0.06 + minimumDismissTimeInterval
             return min(max, maximumDismissTimeInterval)
         }
     }

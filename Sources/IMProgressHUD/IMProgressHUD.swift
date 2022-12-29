@@ -49,6 +49,7 @@ public class IMProgressHUD {
         setBackgroundType(backgroundType)
 
         show()
+        timeOutDismiss()
     }
 
     public static func showSuccess(text: String? = nil) {
@@ -56,6 +57,7 @@ public class IMProgressHUD {
         setTextString(text)
 
         show()
+        timeOutDismiss()
     }
 
     public static func showFail(text: String? = nil) {
@@ -63,6 +65,7 @@ public class IMProgressHUD {
         setTextString(text)
 
         show()
+        timeOutDismiss()
     }
 
     public static func dismiss() {
@@ -70,6 +73,22 @@ public class IMProgressHUD {
 
         contentViewPresenter.addDisappearObserver(self, selector: #selector(dismissProgressView))
         contentViewPresenter.dismissWithAnimation()
+    }
+
+    private static func timeOutDismiss() {
+        let displayDuration = hudSetting.displayDurationForString
+        var progress: Double = 0.0
+        let timer = Timer(timeInterval: 0.01, repeats: true) { timer in
+            progress += 0.01
+            progress = min(displayDuration, progress)
+
+            if progress == displayDuration {
+                timer.invalidate()
+                dismiss()
+            }
+        }
+
+        RunLoop.main.add(timer, forMode: .common)
     }
 
     @objc private static func dismissProgressView() {
