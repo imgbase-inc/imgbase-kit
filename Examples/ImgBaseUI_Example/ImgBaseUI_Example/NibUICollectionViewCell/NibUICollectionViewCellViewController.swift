@@ -7,10 +7,21 @@
 
 import UIKit
 
+// MARK: LayoutConstants
+extension NibUICollectionViewCellViewController {
+    private struct LayoutConstants {
+        static let collectionViewMinimumLineSpacing: CGFloat = 10
+        static let collectionViewNumberOfItemsInSection: Int = 10
+        static let collectionViewWidthMargin: CGFloat = 30
+        static let collectionViewNumberOfCellInLine: CGFloat = 2
+        static let collectionViewCellRatio: CGFloat = 1.6
+    }
+}
+
 class NibUICollectionViewCellViewController: UIViewController {
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
+        layout.minimumLineSpacing = LayoutConstants.collectionViewMinimumLineSpacing
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets()
 
@@ -44,7 +55,7 @@ class NibUICollectionViewCellViewController: UIViewController {
 
 extension NibUICollectionViewCellViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        LayoutConstants.collectionViewNumberOfItemsInSection
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -62,8 +73,8 @@ extension NibUICollectionViewCellViewController: UICollectionViewDataSource {
 
 extension NibUICollectionViewCellViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.frame.width - 30) / 2
-        let height = width + 80
+        let width = (collectionView.frame.width - LayoutConstants.collectionViewWidthMargin) / LayoutConstants.collectionViewNumberOfCellInLine
+        let height = width * LayoutConstants.collectionViewCellRatio
 
         return CGSize(width: width, height: height)
     }

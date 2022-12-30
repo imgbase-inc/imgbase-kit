@@ -7,6 +7,14 @@
 
 import UIKit
 
+// MARK: LayoutConstants
+extension NibUITableViewCellViewController {
+    private struct LayoutConstants {
+        static let tableViewRowHeight: CGFloat = 100
+        static let tableViewNumberOfRowsInSection: Int = 10
+    }
+}
+
 class NibUITableViewCellViewController: UIViewController {
     private let tableView: UITableView = UITableView()
 
@@ -30,13 +38,13 @@ class NibUITableViewCellViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
 
-        tableView.rowHeight = 100
+        tableView.rowHeight = LayoutConstants.tableViewRowHeight
     }
 }
 
 extension NibUITableViewCellViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return LayoutConstants.tableViewNumberOfRowsInSection
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
