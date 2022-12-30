@@ -20,9 +20,12 @@ class NibUIViewController: UIViewController {
     private func setLayout() {
         self.view.addSubview(myView)
         myView.translatesAutoresizingMaskIntoConstraints = false
-        myView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        myView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        myView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        myView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+
+        NSLayoutConstraint.activate([
+            myView.topAnchor.constraint(equalTo: view.topAnchor),
+            myView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            myView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            myView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
 }
