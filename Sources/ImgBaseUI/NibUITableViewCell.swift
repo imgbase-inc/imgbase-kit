@@ -19,7 +19,7 @@ open class NibUITableViewCell: UITableViewCell, NibUIBase {
         return nil
     }
     
-    public static var reuseIdentifier: String {
+    open class var reuseIdentifier: String {
         return String(describing: Self.self) + "ReuseIdentifier"
     }
 

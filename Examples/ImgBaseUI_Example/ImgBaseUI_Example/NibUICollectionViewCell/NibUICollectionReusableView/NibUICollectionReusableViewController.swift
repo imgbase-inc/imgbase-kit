@@ -1,24 +1,25 @@
 //
-//  NibUICollectionViewCellViewController.swift
+//  NibUICollectionReusableViewController.swift
 //  ImgBaseUI_Example
 //
-//  Created by odong on 2022/12/01.
+//  Created by odong on 2022/12/29.
 //
 
 import UIKit
 
 // MARK: LayoutConstants
-extension NibUICollectionViewCellViewController {
+extension NibUICollectionReusableViewController {
     private struct LayoutConstants {
         static let collectionViewMinimumLineSpacing: CGFloat = 10
         static let collectionViewNumberOfItemsInSection: Int = 10
         static let collectionViewWidthMargin: CGFloat = 30
         static let collectionViewNumberOfCellInLine: CGFloat = 2
         static let collectionViewCellRatio: CGFloat = 1.6
+        static let collectionViewHeaderViewHeight: CGFloat = 200
     }
 }
 
-class NibUICollectionViewCellViewController: UIViewController {
+class NibUICollectionReusableViewController: UIViewController {
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = LayoutConstants.collectionViewMinimumLineSpacing
@@ -36,6 +37,7 @@ class NibUICollectionViewCellViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(CustomNibUICollectionViewCell.self, forCellWithReuseIdentifier: CustomNibUICollectionViewCell.reuseIdentifier)
+        collectionView.register(CustomNibUICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: CustomNibUICollectionReusableView.reuseIdentifier)
 
         setLayout()
     }
@@ -53,7 +55,7 @@ class NibUICollectionViewCellViewController: UIViewController {
     }
 }
 
-extension NibUICollectionViewCellViewController: UICollectionViewDataSource {
+extension NibUICollectionReusableViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         LayoutConstants.collectionViewNumberOfItemsInSection
     }
@@ -69,13 +71,27 @@ extension NibUICollectionViewCellViewController: UICollectionViewDataSource {
 
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CustomNibUICollectionReusableView.reuseIdentifier, for: indexPath)
+
+            return headerView
+        }
+
+        return UICollectionReusableView()
+    }
 }
 
-extension NibUICollectionViewCellViewController: UICollectionViewDelegateFlowLayout {
+extension NibUICollectionReusableViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width - LayoutConstants.collectionViewWidthMargin) / LayoutConstants.collectionViewNumberOfCellInLine
         let height = width * LayoutConstants.collectionViewCellRatio
 
         return CGSize(width: width, height: height)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: LayoutConstants.collectionViewHeaderViewHeight)
     }
 }

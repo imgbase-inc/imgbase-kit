@@ -27,7 +27,10 @@
 		B05BD9092936EBE7000A99E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B05BD9072936EBE7000A99E3 /* Main.storyboard */; };
 		B05BD90B2936EBE7000A99E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B05BD90A2936EBE7000A99E3 /* Assets.xcassets */; };
 		B05BD90E2936EBE7000A99E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B05BD90C2936EBE7000A99E3 /* LaunchScreen.storyboard */; };
-		B05BD9192936EC62000A99E3 /* ImgBaseUI in Frameworks */ = {isa = PBXBuildFile; productRef = B05BD9182936EC62000A99E3 /* ImgBaseUI */; };
+		B0F08CCC295D5311001223D6 /* CustomNibUICollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F08CCB295D5311001223D6 /* CustomNibUICollectionReusableView.swift */; };
+		B0F08CD4295D6183001223D6 /* ImgBaseUI in Frameworks */ = {isa = PBXBuildFile; productRef = B0F08CD3295D6183001223D6 /* ImgBaseUI */; };
+		B0F08CD6295D774E001223D6 /* CustomNibUICollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0F08CD5295D774E001223D6 /* CustomNibUICollectionReusableView.xib */; };
+		B0F08CD8295D7769001223D6 /* NibUICollectionReusableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F08CD7295D7769001223D6 /* NibUICollectionReusableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		B05BD90D2936EBE7000A99E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B05BD90F2936EBE7000A99E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B05BD9162936EC4D000A99E3 /* imgbase-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "imgbase-kit"; path = ../..; sourceTree = "<group>"; };
+		B0F08CCB295D5311001223D6 /* CustomNibUICollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNibUICollectionReusableView.swift; sourceTree = "<group>"; };
+		B0F08CD5295D774E001223D6 /* CustomNibUICollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomNibUICollectionReusableView.xib; sourceTree = "<group>"; };
+		B0F08CD7295D7769001223D6 /* NibUICollectionReusableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibUICollectionReusableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B05BD9192936EC62000A99E3 /* ImgBaseUI in Frameworks */,
+				B0F08CD4295D6183001223D6 /* ImgBaseUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +144,7 @@
 				B026AEFB2938360100F92ADA /* NibUIButton */,
 				B026216C2938515400F60496 /* NibUITableViewCell */,
 				B026217329387B1B00F60496 /* NibUICollectionViewCell */,
+				B0F08CCA295D519B001223D6 /* NibUICollectionReusableView */,
 				B05BD9072936EBE7000A99E3 /* Main.storyboard */,
 				B05BD90A2936EBE7000A99E3 /* Assets.xcassets */,
 				B05BD90C2936EBE7000A99E3 /* LaunchScreen.storyboard */,
@@ -161,6 +168,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B0F08CCA295D519B001223D6 /* NibUICollectionReusableView */ = {
+			isa = PBXGroup;
+			children = (
+				B0F08CCB295D5311001223D6 /* CustomNibUICollectionReusableView.swift */,
+				B0F08CD5295D774E001223D6 /* CustomNibUICollectionReusableView.xib */,
+				B0F08CD7295D7769001223D6 /* NibUICollectionReusableViewController.swift */,
+			);
+			name = NibUICollectionReusableView;
+			path = NibUICollectionViewCell/NibUICollectionReusableView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -179,7 +197,7 @@
 			);
 			name = ImgBaseUI_Example;
 			packageProductDependencies = (
-				B05BD9182936EC62000A99E3 /* ImgBaseUI */,
+				B0F08CD3295D6183001223D6 /* ImgBaseUI */,
 			);
 			productName = ImgBaseUI_Example;
 			productReference = B05BD8FE2936EBE7000A99E3 /* ImgBaseUI_Example.app */;
@@ -229,6 +247,7 @@
 				B05BD90E2936EBE7000A99E3 /* LaunchScreen.storyboard in Resources */,
 				B02621702938517A00F60496 /* CustomNibUITableViewCell.xib in Resources */,
 				B026AEF129382CE200F92ADA /* CustomNibUIView.xib in Resources */,
+				B0F08CD6295D774E001223D6 /* CustomNibUICollectionReusableView.xib in Resources */,
 				B05BD90B2936EBE7000A99E3 /* Assets.xcassets in Resources */,
 				B05BD9092936EBE7000A99E3 /* Main.storyboard in Resources */,
 				B026AEFF2938369600F92ADA /* CustomNibUIButton.xib in Resources */,
@@ -266,6 +285,7 @@
 			files = (
 				B026AEF029382CE200F92ADA /* CustomNibUIView.swift in Sources */,
 				B05BD9062936EBE7000A99E3 /* ViewController.swift in Sources */,
+				B0F08CD8295D7769001223D6 /* NibUICollectionReusableViewController.swift in Sources */,
 				B026AEFD2938361500F92ADA /* CustomNibUIButton.swift in Sources */,
 				B05BD9022936EBE7000A99E3 /* AppDelegate.swift in Sources */,
 				B05BD9042936EBE7000A99E3 /* SceneDelegate.swift in Sources */,
@@ -274,6 +294,7 @@
 				B026216E2938516F00F60496 /* CustomNibUITableViewCell.swift in Sources */,
 				B0262172293851A800F60496 /* NibUITableViewCellViewController.swift in Sources */,
 				B026AEEF29382CE200F92ADA /* NibUIViewController.swift in Sources */,
+				B0F08CCC295D5311001223D6 /* CustomNibUICollectionReusableView.swift in Sources */,
 				B026217929387B8A00F60496 /* NibUICollectionViewCellViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,7 +517,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B05BD9182936EC62000A99E3 /* ImgBaseUI */ = {
+		B0F08CD3295D6183001223D6 /* ImgBaseUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ImgBaseUI;
 		};
