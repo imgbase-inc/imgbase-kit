@@ -8,20 +8,29 @@ let package = Package(
     products: [
         .library(
             name: "ImgBaseUI",
-            targets: ["ImgBaseUI"]),
+            targets: ["ImgBaseUI"]
+        ),
+        .library(
+            name: "IMProgressHUD",
+            targets: ["IMProgressHUD"]
+        )
     ],
     dependencies: [],
     targets: [
         .target(
             name: "ImgBaseUI",
             dependencies: [],
-            path: "Sources"
+            path: "Sources/ImgBaseUI"
         ),
         .testTarget(
             name: "ImgBaseUITests",
             dependencies: [],
             path: "Tests"
+        ),
+        .target(
+            name: "IMProgressHUD",
+            dependencies: ["ImgBaseUI"],
+            path: "Sources/IMProgressHUD"
         )
-        
     ]
 )
