@@ -32,10 +32,13 @@ class NibUICollectionViewCellViewController: UIViewController {
     private func setLayout() {
         self.view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
 }
 
