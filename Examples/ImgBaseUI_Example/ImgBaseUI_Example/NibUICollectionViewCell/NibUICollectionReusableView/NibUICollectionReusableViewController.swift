@@ -73,14 +73,13 @@ extension NibUICollectionReusableViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
+        if kind == UICollectionView.elementKindSectionHeader {
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: CustomNibUICollectionReusableView.reuseIdentifier, for: indexPath)
 
             return headerView
-        default:
-            assert(false, "Assert")
         }
+
+        return UICollectionReusableView()
     }
 }
 
