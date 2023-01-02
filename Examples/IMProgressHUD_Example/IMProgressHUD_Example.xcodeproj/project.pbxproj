@@ -14,6 +14,7 @@
 		B0F08D0F295EE0E8001223D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0F08D0E295EE0E8001223D6 /* Assets.xcassets */; };
 		B0F08D12295EE0E8001223D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0F08D10295EE0E8001223D6 /* LaunchScreen.storyboard */; };
 		B0F08D1D2962553B001223D6 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = B0F08D1C2962553B001223D6 /* .swiftlint.yml */; };
+		B0F08D2229628DD8001223D6 /* IMProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = B0F08D2129628DD8001223D6 /* IMProgressHUD */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B0F08D11295EE0E8001223D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0F08D13295EE0E8001223D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0F08D1C2962553B001223D6 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		B0F08D1F29628D54001223D6 /* imgbase-kit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "imgbase-kit"; path = ../..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0F08D2229628DD8001223D6 /* IMProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,9 +45,11 @@
 		B0F08CF9295EE0E7001223D6 = {
 			isa = PBXGroup;
 			children = (
+				B0F08D1E29628D54001223D6 /* Packages */,
 				B0F08D1C2962553B001223D6 /* .swiftlint.yml */,
 				B0F08D04295EE0E7001223D6 /* IMProgressHUD_Example */,
 				B0F08D03295EE0E7001223D6 /* Products */,
+				B0F08D2029628DD8001223D6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -70,6 +75,21 @@
 			path = IMProgressHUD_Example;
 			sourceTree = "<group>";
 		};
+		B0F08D1E29628D54001223D6 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				B0F08D1F29628D54001223D6 /* imgbase-kit */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		B0F08D2029628DD8001223D6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -87,6 +107,9 @@
 			dependencies = (
 			);
 			name = IMProgressHUD_Example;
+			packageProductDependencies = (
+				B0F08D2129628DD8001223D6 /* IMProgressHUD */,
+			);
 			productName = IMProgressHUD_Example;
 			productReference = B0F08D02295EE0E7001223D6 /* IMProgressHUD_Example.app */;
 			productType = "com.apple.product-type.application";
@@ -387,6 +410,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B0F08D2129628DD8001223D6 /* IMProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = IMProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B0F08CFA295EE0E7001223D6 /* Project object */;
 }
