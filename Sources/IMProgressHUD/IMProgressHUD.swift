@@ -30,7 +30,6 @@ public class IMProgressHUD {
 
         let mainWindow = UIApplication.shared.windows.first ?? UIWindow()
         mainWindow.addSubview(progressView)
-        mainWindow.isUserInteractionEnabled = hudSetting.isUserInteractionEnabled
     }
 
     public static func show(text: String? = nil, isUserInteractionEnabled: Bool = true, backgroundType: BackgroundType = .none) {
@@ -84,6 +83,8 @@ public class IMProgressHUD {
 
         contentViewPresenter.addDisappearObserver(self, selector: #selector(dismissProgressView))
         contentViewPresenter.dismissWithAnimation()
+
+        setIsUserInteractionEnabled(true)
     }
 
     private static func timeOutDismiss() {
@@ -92,7 +93,7 @@ public class IMProgressHUD {
         let timer = Timer(timeInterval: 0.01, repeats: true) { timer in
             guard contentViewPresenter.isPresenting else {
                 timer.invalidate()
-                
+
                 return
             }
 
@@ -189,6 +190,9 @@ extension IMProgressHUD {
 
     public static func setIsUserInteractionEnabled(_ enabled: Bool) {
         self.hudSetting.isUserInteractionEnabled = enabled
+
+        let mainWindow = UIApplication.shared.windows.first ?? UIWindow()
+        mainWindow.isUserInteractionEnabled = hudSetting.isUserInteractionEnabled
     }
 
     public static func setBackgroundType(_ type: BackgroundType) {
