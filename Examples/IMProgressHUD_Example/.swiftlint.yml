@@ -12,6 +12,9 @@
 disabled_rules:
 - line_length
 
+cyclomatic_complexity:
+  ignores_case_statements: true
+  
 included:
 excluded:
 
