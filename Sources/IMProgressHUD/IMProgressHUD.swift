@@ -52,6 +52,17 @@ public class IMProgressHUD {
         timeOutDismiss()
     }
 
+    public static func show(with image: UIImage, text: String? = nil, isUserInteractionEnabled: Bool = true, backgroundType: BackgroundType = .none) {
+        let img = Image(uiImage: image)
+        setContentType(.image(img))
+        setTextString(text)
+        setIsUserInteractionEnabled(isUserInteractionEnabled)
+        setBackgroundType(backgroundType)
+
+        show()
+        timeOutDismiss()
+    }
+
     public static func showSuccess(text: String? = nil) {
         setContentType(.success)
         setTextString(text)
@@ -138,8 +149,16 @@ extension IMProgressHUD {
         self.hudSetting.successImage = image
     }
 
+    public static func setSuccessImage(_ image: UIImage) {
+        self.hudSetting.successImage = Image(uiImage: image)
+    }
+
     public static func setErrorImage(_ image: Image) {
         self.hudSetting.errorImage = image
+    }
+
+    public static func setErrorImage(_ image: UIImage) {
+        self.hudSetting.errorImage = Image(uiImage: image)
     }
 
     public static func setMaximumDismissTimeInterval(_ timeInterval: TimeInterval) {

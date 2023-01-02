@@ -38,7 +38,7 @@ internal class HUDSetting: ObservableObject {
     @Published var successImage: Image = Image(systemName: "checkmark")
     @Published var errorImage: Image = Image(systemName: "xmark.circle")
     @Published var maximumDismissTimeInterval: TimeInterval = 3.0
-    @Published var minimumDismissTimeInterval: TimeInterval = 1.0
+    @Published var minimumDismissTimeInterval: TimeInterval = 2.0
 
     var displayDurationForString: TimeInterval {
         get {
