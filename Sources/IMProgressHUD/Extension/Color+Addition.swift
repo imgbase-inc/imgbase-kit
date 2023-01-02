@@ -1,8 +1,9 @@
 //
-//  File.swift
-//  
+//  Color+Addition.swift
+//  imgbase-kit
 //
-//  Created by odong on 2023/01/02.
+//  Created by Dongbin Kim on 02/01/2023.
+//  Copyright © 2022 ImgBase, Inc. All rights reserved.
 //
 
 import SwiftUI
