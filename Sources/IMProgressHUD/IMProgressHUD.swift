@@ -117,6 +117,10 @@ extension IMProgressHUD {
         self.hudSetting.textColor = color
     }
 
+    public static func setTextColor(_ color: UIColor) {
+        self.hudSetting.textColor = color.suColor
+    }
+
     public static func setTextFont(_ font: Font) {
         self.hudSetting.textFont = font
     }
@@ -125,8 +129,16 @@ extension IMProgressHUD {
         self.hudSetting.foregroundColor = color
     }
 
+    public static func setForegroundColor(_ color: UIColor) {
+        self.hudSetting.foregroundColor = color.suColor
+    }
+
     public static func setBackgroundColor(_ color: Color) {
         self.hudSetting.backgroundColor = color
+    }
+
+    public static func setBackgroundColor(_ color: UIColor) {
+        self.hudSetting.backgroundColor = color.suColor
     }
 
     public static func setMinimumSize(_ size: CGSize) {
