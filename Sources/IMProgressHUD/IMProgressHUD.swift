@@ -90,6 +90,12 @@ public class IMProgressHUD {
         let displayDuration = hudSetting.displayDurationForString
         var progress: Double = 0.0
         let timer = Timer(timeInterval: 0.01, repeats: true) { timer in
+            guard contentViewPresenter.isPresenting else {
+                timer.invalidate()
+                
+                return
+            }
+
             progress += 0.01
             progress = min(displayDuration, progress)
 
