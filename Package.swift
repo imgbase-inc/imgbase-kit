@@ -29,7 +29,7 @@ let package = Package(
         ),
         .target(
             name: "IMProgressHUD",
-            dependencies: ["ImgBaseUI"],
+            dependencies: [],
             path: "Sources/IMProgressHUD"
         )
     ]
