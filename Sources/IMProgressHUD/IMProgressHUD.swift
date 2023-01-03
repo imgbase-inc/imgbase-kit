@@ -30,7 +30,6 @@ public class IMProgressHUD {
 
         let mainWindow = UIApplication.shared.windows.first ?? UIWindow()
         mainWindow.addSubview(progressView)
-        mainWindow.isUserInteractionEnabled = hudSetting.isUserInteractionEnabled
     }
 
     public static func show(text: String? = nil, isUserInteractionEnabled: Bool = true, backgroundType: BackgroundType = .none) {
@@ -44,6 +43,17 @@ public class IMProgressHUD {
 
     public static func show(with image: Image, text: String? = nil, isUserInteractionEnabled: Bool = true, backgroundType: BackgroundType = .none) {
         setContentType(.image(image))
+        setTextString(text)
+        setIsUserInteractionEnabled(isUserInteractionEnabled)
+        setBackgroundType(backgroundType)
+
+        show()
+        timeOutDismiss()
+    }
+
+    public static func show(with image: UIImage, text: String? = nil, isUserInteractionEnabled: Bool = true, backgroundType: BackgroundType = .none) {
+        let img = Image(uiImage: image)
+        setContentType(.image(img))
         setTextString(text)
         setIsUserInteractionEnabled(isUserInteractionEnabled)
         setBackgroundType(backgroundType)
@@ -73,12 +83,20 @@ public class IMProgressHUD {
 
         contentViewPresenter.addDisappearObserver(self, selector: #selector(dismissProgressView))
         contentViewPresenter.dismissWithAnimation()
+
+        setIsUserInteractionEnabled(true)
     }
 
     private static func timeOutDismiss() {
         let displayDuration = hudSetting.displayDurationForString
         var progress: Double = 0.0
         let timer = Timer(timeInterval: 0.01, repeats: true) { timer in
+            guard contentViewPresenter.isPresenting else {
+                timer.invalidate()
+
+                return
+            }
+
             progress += 0.01
             progress = min(displayDuration, progress)
 
@@ -106,6 +124,10 @@ extension IMProgressHUD {
         self.hudSetting.textColor = color
     }
 
+    public static func setTextColor(_ color: UIColor) {
+        self.hudSetting.textColor = color.suColor
+    }
+
     public static func setTextFont(_ font: Font) {
         self.hudSetting.textFont = font
     }
@@ -114,8 +136,16 @@ extension IMProgressHUD {
         self.hudSetting.foregroundColor = color
     }
 
+    public static func setForegroundColor(_ color: UIColor) {
+        self.hudSetting.foregroundColor = color.suColor
+    }
+
     public static func setBackgroundColor(_ color: Color) {
         self.hudSetting.backgroundColor = color
+    }
+
+    public static func setBackgroundColor(_ color: UIColor) {
+        self.hudSetting.backgroundColor = color.suColor
     }
 
     public static func setMinimumSize(_ size: CGSize) {
@@ -138,8 +168,16 @@ extension IMProgressHUD {
         self.hudSetting.successImage = image
     }
 
+    public static func setSuccessImage(_ image: UIImage) {
+        self.hudSetting.successImage = Image(uiImage: image)
+    }
+
     public static func setErrorImage(_ image: Image) {
         self.hudSetting.errorImage = image
+    }
+
+    public static func setErrorImage(_ image: UIImage) {
+        self.hudSetting.errorImage = Image(uiImage: image)
     }
 
     public static func setMaximumDismissTimeInterval(_ timeInterval: TimeInterval) {
@@ -152,6 +190,9 @@ extension IMProgressHUD {
 
     public static func setIsUserInteractionEnabled(_ enabled: Bool) {
         self.hudSetting.isUserInteractionEnabled = enabled
+
+        let mainWindow = UIApplication.shared.windows.first ?? UIWindow()
+        mainWindow.isUserInteractionEnabled = hudSetting.isUserInteractionEnabled
     }
 
     public static func setBackgroundType(_ type: BackgroundType) {
