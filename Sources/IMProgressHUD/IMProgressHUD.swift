@@ -132,6 +132,10 @@ extension IMProgressHUD {
         self.hudSetting.textFont = font
     }
 
+    public static func setTextFont(_ font: UIFont) {
+        self.hudSetting.textFont = Font(font as CTFont)
+    }
+
     public static func setForegroundColor(_ color: Color) {
         self.hudSetting.foregroundColor = color
     }
