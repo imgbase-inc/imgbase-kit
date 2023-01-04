@@ -42,9 +42,6 @@ internal struct IMProgressView: View {
                 }
             }
         }
-        .onAppear() {
-            contentViewAnimationAssistant.showWithAnimation()
-        }
     }
 
     private func contentImage() -> AnyView {
