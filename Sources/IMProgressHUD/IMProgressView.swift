@@ -13,7 +13,6 @@ internal struct IMProgressView: View {
     @EnvironmentObject private var contentViewAnimationAssistant: ContentViewAnimationAssistant
 
     @State private var animationTime: Double = 0.25
-    @State var isPresenting: Bool = false
 
     var body: some View {
         ZStack {
@@ -36,6 +35,7 @@ internal struct IMProgressView: View {
                 .background(hudSetting.backgroundColor
                     .clipShape(RoundedRectangle(cornerRadius: hudSetting.cornerRadius)))
                 .transition(.scale(scale: 0.4).combined(with: .opacity))
+                .zIndex(1)
                 .onDisappear() {
                     contentViewAnimationAssistant.postDisappearNotification()
                     contentViewAnimationAssistant.removeDisappearObserver()
