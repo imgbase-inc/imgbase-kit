@@ -10,12 +10,12 @@ import SwiftUI
 
 public class IMProgressHUD {
     @ObservedObject static var hudSetting = HUDSetting()
-    @ObservedObject private static var contentViewPresenter = ContentViewAnimationAssistant()
+    @ObservedObject private static var contentViewAnimationAssistant = ContentViewAnimationAssistant()
 
     private static let progressView: UIView = {
         guard let view = UIHostingController(rootView: IMProgressView()
             .environmentObject(hudSetting)
-            .environmentObject(contentViewPresenter)
+            .environmentObject(contentViewAnimationAssistant)
         ).view else {
             fatalError("ProgressView를 생성할 수 없습니다.")
         }
@@ -26,10 +26,11 @@ public class IMProgressHUD {
     }()
 
     private static func show() {
-        guard !contentViewPresenter.isPresenting else { return }
+        guard !contentViewAnimationAssistant.isPresenting else { return }
 
         let mainWindow = UIApplication.shared.windows.first ?? UIWindow()
         mainWindow.addSubview(progressView)
+        contentViewAnimationAssistant.showWithAnimation()
     }
 
     public static func show(text: String? = nil, isUserInteractionEnabled: Bool = true, backgroundType: BackgroundType = .none) {
@@ -79,10 +80,10 @@ public class IMProgressHUD {
     }
 
     public static func dismiss() {
-        guard contentViewPresenter.isPresenting else { return }
+        guard contentViewAnimationAssistant.isPresenting else { return }
 
-        contentViewPresenter.addDisappearObserver(self, selector: #selector(dismissProgressView))
-        contentViewPresenter.dismissWithAnimation()
+        contentViewAnimationAssistant.addDisappearObserver(self, selector: #selector(dismissProgressView))
+        contentViewAnimationAssistant.dismissWithAnimation()
 
         setIsUserInteractionEnabled(true)
     }
@@ -91,7 +92,7 @@ public class IMProgressHUD {
         let displayDuration = hudSetting.displayDurationForString
         var progress: Double = 0.0
         let timer = Timer(timeInterval: 0.01, repeats: true) { timer in
-            guard contentViewPresenter.isPresenting else {
+            guard contentViewAnimationAssistant.isPresenting else {
                 timer.invalidate()
 
                 return

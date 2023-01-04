@@ -18,6 +18,18 @@ internal class ContentViewAnimationAssistant: ObservableObject {
         }
     }
 
+//    func showWithAnimation(selector: Selector) {
+//        withAnimation(.easeInOut(duration: animationTime)) {
+//            self.isPresenting = true
+//        }
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + animationTime + 0.05) {
+//
+//            self.addDisappearObserver(self, selector: selector)
+//            self.dismissWithAnimation()
+//        }
+//    }
+
     func dismissWithAnimation() {
         withAnimation(.easeInOut(duration: animationTime)) {
             self.isPresenting = false
