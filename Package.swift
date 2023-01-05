@@ -13,6 +13,10 @@ let package = Package(
         .library(
             name: "IMProgressHUD",
             targets: ["IMProgressHUD"]
+        ),
+        .library(
+            name: "IMImageViewer",
+            targets: ["IMImageViewer"]
         )
     ],
     dependencies: [],
@@ -31,6 +35,11 @@ let package = Package(
             name: "IMProgressHUD",
             dependencies: [],
             path: "Sources/IMProgressHUD"
+        ),
+        .target(
+            name: "IMImageViewer",
+            dependencies: [],
+            path: "Sources/IMImageViewer"
         )
     ]
 )
