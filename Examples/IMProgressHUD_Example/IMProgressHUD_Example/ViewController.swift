@@ -76,7 +76,7 @@ final class ViewController: UIViewController {
         IMProgressHUD.setMinimumSize(CGSize(width: 100, height: 100))
         IMProgressHUD.setBackgroundColor(UIColor.systemGray5)
         IMProgressHUD.setCornerRadius(10)
-        IMProgressHUD.setImageViewSize(CGSize(width: 70, height: 70))
+        IMProgressHUD.setImageViewSize(CGSize(width: 44, height: 44))
         IMProgressHUD.setRingThickness(4)
     }
 }
