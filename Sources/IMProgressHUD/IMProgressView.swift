@@ -8,6 +8,12 @@
 
 import SwiftUI
 
+extension IMProgressView {
+    private enum LayoutConstant {
+        static let contentViewPadding: CGFloat = 20
+    }
+}
+
 internal struct IMProgressView: View {
     @EnvironmentObject private var hudSetting: HUDSetting
     @EnvironmentObject private var contentViewAnimationAssistant: ContentViewAnimationAssistant
@@ -30,8 +36,11 @@ internal struct IMProgressView: View {
                             .font(hudSetting.textFont)
                     }
                 }
-                .frame(minWidth: hudSetting.minimumSize.width, minHeight: hudSetting.minimumSize.height)
-                .padding(20)
+                .frame(
+                    minWidth: hudSetting.minimumSize.width - LayoutConstant.contentViewPadding*2,
+                    minHeight: hudSetting.minimumSize.height - LayoutConstant.contentViewPadding*2
+                )
+                .padding(LayoutConstant.contentViewPadding)
                 .background(hudSetting.backgroundColor
                     .clipShape(RoundedRectangle(cornerRadius: hudSetting.cornerRadius)))
                 .transition(.scale(scale: 0.4).combined(with: .opacity))
