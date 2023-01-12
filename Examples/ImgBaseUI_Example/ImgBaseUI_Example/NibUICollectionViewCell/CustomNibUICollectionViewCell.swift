@@ -11,4 +11,10 @@ import ImgBaseUI
 class CustomNibUICollectionViewCell: NibUICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var label: UILabel!
+
+    override var nibName: String? {
+        return "CustomNibUICollectionViewCell"
+    }
+
+    static let reuseIdentifier = "CustomNibUICollectionViewCellReuseIdentifier"
 }

@@ -12,6 +12,10 @@ import ImgBaseUI
 class CustomNibUIView: NibUIView {
     @IBOutlet weak var label: UILabel!
 
+    override var nibName: String? {
+        return "CustomNibUIView"
+    }
+
     override func commonInit() {
         super.commonInit()
 

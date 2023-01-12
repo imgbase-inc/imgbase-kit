@@ -10,7 +10,7 @@ import UIKit
 
 protocol NibUIBase: AnyObject {
     var containerView: UIView! { get set }
-    var nibName: String { get }
+    var nibName: String? { get }
     var bundle: Bundle? { get }
     
     func commonInit()

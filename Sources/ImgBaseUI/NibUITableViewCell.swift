@@ -11,16 +11,12 @@ import UIKit
 open class NibUITableViewCell: UITableViewCell, NibUIBase {
     @IBOutlet public weak var containerView: UIView!
     
-    open var nibName: String {
-        return String(describing: Self.self)
+    open var nibName: String? {
+        return nil
     }
     
     open var bundle: Bundle? {
         return nil
-    }
-    
-    open class var reuseIdentifier: String {
-        return String(describing: Self.self) + "ReuseIdentifier"
     }
 
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -34,10 +30,12 @@ open class NibUITableViewCell: UITableViewCell, NibUIBase {
     }
     
     open func commonInit() {
-        containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
-
-        contentView.addSubview(containerView)
-        containerView.frame = bounds
-        containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        if let nibName {
+            containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
+            
+            contentView.addSubview(containerView)
+            containerView.frame = bounds
+            containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        }
     }
 }

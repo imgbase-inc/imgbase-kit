@@ -11,16 +11,12 @@ import UIKit
 open class NibUICollectionReusableView: UICollectionReusableView, NibUIBase {
     @IBOutlet public weak var containerView: UIView!
 
-    open var nibName: String {
-        return String(describing: Self.self)
+    open var nibName: String? {
+        return nil
     }
 
     open var bundle: Bundle? {
         return nil
-    }
-
-    open class var reuseIdentifier: String {
-        return String(describing: Self.self) + "ReuseIdentifier"
     }
 
     override public init(frame: CGRect) {
@@ -34,10 +30,12 @@ open class NibUICollectionReusableView: UICollectionReusableView, NibUIBase {
     }
 
     open func commonInit() {
-        containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
-
-        addSubview(containerView)
-        containerView.frame = bounds
-        containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        if let nibName {
+            containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
+            
+            addSubview(containerView)
+            containerView.frame = bounds
+            containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        }
     }
 }
