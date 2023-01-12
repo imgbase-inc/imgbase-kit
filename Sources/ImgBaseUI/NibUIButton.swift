@@ -11,8 +11,8 @@ import UIKit
 open class NibUIButton: UIButton, NibUIBase {
     @IBOutlet public weak var containerView: UIView!
     
-    open var nibName: String {
-        return String(describing: Self.self)
+    open var nibName: String? {
+        return nil
     }
     
     open var bundle: Bundle? {
@@ -30,11 +30,13 @@ open class NibUIButton: UIButton, NibUIBase {
     }
     
     open func commonInit() {
-        containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
-
-        addSubview(containerView)
-        containerView.frame = bounds
-        containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        containerView.isUserInteractionEnabled = false
+        if let nibName {
+            containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
+            
+            addSubview(containerView)
+            containerView.frame = bounds
+            containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            containerView.isUserInteractionEnabled = false
+        }
     }
 }

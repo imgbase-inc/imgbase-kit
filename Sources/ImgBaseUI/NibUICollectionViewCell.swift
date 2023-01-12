@@ -11,8 +11,8 @@ import UIKit
 open class NibUICollectionViewCell: UICollectionViewCell, NibUIBase {
     @IBOutlet public weak var containerView: UIView!
     
-    open var nibName: String {
-        return String(describing: Self.self)
+    open var nibName: String? {
+        return nil
     }
     
     open var bundle: Bundle? {
@@ -34,10 +34,12 @@ open class NibUICollectionViewCell: UICollectionViewCell, NibUIBase {
     }
     
     open func commonInit() {
-        containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
-
-        contentView.addSubview(containerView)
-        containerView.frame = bounds
-        containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        if let nibName {
+            containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
+            
+            contentView.addSubview(containerView)
+            containerView.frame = bounds
+            containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        }
     }
 }
