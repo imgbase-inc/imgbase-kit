@@ -19,10 +19,6 @@ open class NibUICollectionReusableView: UICollectionReusableView, NibUIBase {
         return nil
     }
 
-    open class var reuseIdentifier: String {
-        return String(describing: Self.self) + "ReuseIdentifier"
-    }
-
     override public init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()

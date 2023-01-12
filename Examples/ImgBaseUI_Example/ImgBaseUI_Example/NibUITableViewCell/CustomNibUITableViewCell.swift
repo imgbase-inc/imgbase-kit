@@ -16,4 +16,6 @@ class CustomNibUITableViewCell: NibUITableViewCell {
     override var nibName: String? {
         return "CustomNibUITableViewCell"
     }
+
+    static let reuseIdentifier = "CustomNibUITableViewCellReuseIdentifier"
 }

@@ -15,4 +15,6 @@ class CustomNibUICollectionViewCell: NibUICollectionViewCell {
     override var nibName: String? {
         return "CustomNibUICollectionViewCell"
     }
+
+    static let reuseIdentifier = "CustomNibUICollectionViewCellReuseIdentifier"
 }
