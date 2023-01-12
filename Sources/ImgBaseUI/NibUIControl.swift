@@ -37,8 +37,7 @@ open class NibUIControl: UIControl, NibUIBase {
             addSubview(containerView)
             containerView.frame = bounds
             containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            containerView.isUserInteractionEnabled = false
         }
-
-        containerView.isUserInteractionEnabled = false
     }
 }
