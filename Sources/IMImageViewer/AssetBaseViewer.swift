@@ -15,8 +15,12 @@ open class AssetBaseViewer: UIViewController, UIGestureRecognizerDelegate {
     private let scrollView = UIScrollView()
     private let activityIndicatorView = UIActivityIndicatorView(style: .medium)
 
+    weak public var delegate: AssetControllerDelegate?
+
     private let doubleTapRecognizer = UITapGestureRecognizer()
     private let swipeDismissRecognizer = UIPanGestureRecognizer()
+
+    private var swipeDismissTransition: SwipeDismissTransition?
 
     // tmp
     let assetView: UIImageView = UIImageView(image: UIImage(data: try! Data(contentsOf: URL(string: "https://picsum.photos/300/700")!))!)
@@ -36,6 +40,10 @@ open class AssetBaseViewer: UIViewController, UIGestureRecognizerDelegate {
         setAssetViewSize()
     }
 
+    deinit {
+        self.scrollView.removeObserver(self, forKeyPath: "contentOffset")
+    }
+
     private func setViewHierarchy() {
         self.view.addSubview(scrollView)
         scrollView.addSubview(assetView)
@@ -50,6 +58,8 @@ open class AssetBaseViewer: UIViewController, UIGestureRecognizerDelegate {
         scrollView.contentOffset = CGPoint.zero
         scrollView.maximumZoomScale = max(8, aspectFillZoomScale(forBoundingSize: self.view.bounds.size, contentSize: assetView.bounds.size))
         scrollView.minimumZoomScale = 1
+
+        scrollView.addObserver(self, forKeyPath: "contentOffset", options: NSKeyValueObservingOptions.new, context: nil)
     }
 
     private func setGestureRecognizer() {
@@ -145,6 +155,49 @@ extension AssetBaseViewer: UIScrollViewDelegate {
 extension AssetBaseViewer {
     @objc func scrollViewDidSwipeToDismiss(_ recognizer: UIPanGestureRecognizer) {
         guard scrollView.zoomScale == scrollView.minimumZoomScale else { return }
+
+        let currentVelocity = recognizer.velocity(in: self.view)
+        let currentTouchPoint = recognizer.translation(in: view)
+
+        switch recognizer.state {
+        case .began:
+            swipeDismissTransition = SwipeDismissTransition(scrollView: self.scrollView)
+        case .changed:
+            self.handleSwipeToDismissInProgress(forTouchPoint: currentTouchPoint)
+        case .ended:
+            self.handleSwipeToDismissEnded(finalVelocity: currentVelocity, finalTouchPoint: currentTouchPoint)
+        default:
+            break
+        }
+    }
+
+    func handleSwipeToDismissInProgress(forTouchPoint touchPoint: CGPoint) {
+        swipeDismissTransition?.updateInteractiveTransition(verticalOffset: -touchPoint.y)
+    }
+
+    func handleSwipeToDismissEnded(finalVelocity velocity: CGPoint, finalTouchPoint touchPoint: CGPoint) {
+        let thresholdVelocity: CGFloat = 500
+
+        let swipeToDismissCompletionBlock = { [weak self] in
+            let applicationWindow = UIApplication.shared.delegate?.window?.flatMap { $0 }
+            applicationWindow?.windowLevel = UIWindow.Level.normal
+
+            self?.delegate?.itemControllerDidFinishSwipeToDismissSuccessfully()
+        }
+
+        if velocity.y < -thresholdVelocity {
+            swipeDismissTransition?.finishInteractiveTransition(touchPoint: touchPoint.y,
+                                                                  targetOffset: (view.bounds.height / 2) + (assetView.bounds.height / 2),
+                                                                  escapeVelocity: velocity.y,
+                                                                  completion: swipeToDismissCompletionBlock)
+        } else if thresholdVelocity < velocity.y {
+            swipeDismissTransition?.finishInteractiveTransition(                                                                  touchPoint: touchPoint.y,
+                                                                                                                                    targetOffset: -(view.bounds.height / 2) - (assetView.bounds.height / 2),
+                                                                                                                                    escapeVelocity: velocity.y,
+                                                                                                                                    completion: swipeToDismissCompletionBlock)
+        } else {
+            swipeDismissTransition?.cancelTransition()
+        }
     }
 
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -157,4 +210,53 @@ extension AssetBaseViewer {
 
         return false
     }
+
+    override open func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+
+        guard keyPath == "contentOffset" else { return }
+
+        let distanceToEdge: CGFloat
+        let percentDistance: CGFloat
+
+        distanceToEdge = (scrollView.bounds.height / 2) + (assetView.bounds.height / 2)
+        percentDistance = abs(scrollView.contentOffset.y / distanceToEdge)
+
+        if let delegate = self.delegate {
+            delegate.itemController(self, didSwipeToDismissWithDistanceToEdge: percentDistance)
+        }
+    }
+}
+
+// MARK: AssetController
+extension AssetBaseViewer: AssetController {
+    public var index: Int {
+        10
+    }
+
+    public var isInitialController: Bool {
+        get {
+            return isInitialController
+        }
+        set {
+            isInitialController = newValue
+        }
+    }
+
+    public func fetchImage() {
+
+    }
+
+    public func presentItem(alongsideAnimation: () -> Void, completion: @escaping () -> Void) {
+
+    }
+
+    public func dismissItem(alongsideAnimation: () -> Void, completion: @escaping () -> Void) {
+
+    }
+
+    public func closeDecorationViews(_ duration: TimeInterval) {
+
+    }
+
+
 }

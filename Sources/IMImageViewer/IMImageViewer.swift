@@ -73,8 +73,46 @@ open class IMImageViewer: UIPageViewController {
     }
 
     private func setPagingViewController() {
+        assetViewer.delegate = self
+        pagingDataSource.assetControllerDelegate = self
         dataSource = pagingDataSource
 
         self.setViewControllers([assetViewer], direction: .forward, animated: true)
+    }
+}
+
+extension IMImageViewer: AssetControllerDelegate {
+    public func itemController(_ controller: AssetController, didSwipeToDismissWithDistanceToEdge distance: CGFloat) {
+
+//        if decorationViewsHidden == false {
+
+            let alpha = 1 - distance * 6
+            headerView?.alpha = alpha
+            footerView?.alpha = alpha
+
+//            if controller is VideoViewController {
+//                scrubber.alpha = alpha
+//            }
+//        }
+
+//        self.overlayView.blurringView.alpha = 1 - distance
+//        self.overlayView.colorView.alpha = 1 - distance
+    }
+
+    public func itemControllerDidFinishSwipeToDismissSuccessfully() {
+//        self.overlayView.removeFromSuperview()
+        self.dismiss(animated: false, completion: nil)
+    }
+
+    public func itemControllerWillAppear(_ controller: AssetController) {
+
+    }
+
+    public func itemControllerWillDisappear(_ controller: AssetController) {
+
+    }
+
+    public func itemControllerDidAppear(_ controller: AssetController) {
+
     }
 }

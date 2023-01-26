@@ -9,6 +9,8 @@
 import UIKit
 
 final class PagingDataSource: NSObject, UIPageViewControllerDataSource {
+    weak var assetControllerDelegate: AssetControllerDelegate?
+
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         print("<<<<")
 
