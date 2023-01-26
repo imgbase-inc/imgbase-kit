@@ -18,15 +18,6 @@ class ViewController: UIViewController {
         let imageView = IMImageViewer(transitionStyle: .scroll, navigationOrientation: .horizontal)
         imageView.modalPresentationStyle = .fullScreen
 
-        let headerView = UIView()
-        headerView.bounds.size.height = 70
-
-        let footerView = UIView()
-        footerView.bounds.size.height = 70
-
-        imageView.headerView = headerView
-        imageView.footerView = footerView
-
         present(imageView, animated: true)
     }
 }

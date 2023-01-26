@@ -10,23 +10,23 @@ import UIKit
 
 enum LayoutConstants {
     static let defaultTopMargin: CGFloat = 20
-    static var headerViewHeight: CGFloat?
-    static var footerViewHeight: CGFloat?
+    static var headerViewHeight: CGFloat = 44
+    static var footerViewHeight: CGFloat = 44
 }
 
 open class IMImageViewer: UIPageViewController {
-    open var headerView: UIView?
-    open var footerView: UIView?
+    open var headerView: UIView? = BasicHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: LayoutConstants.headerViewHeight))
+    open var footerView: UIView? = BasicFooterView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: LayoutConstants.footerViewHeight))
 
     open var assetViewer = AssetBaseViewer()
     private let pagingDataSource = PagingDataSource()
+    private var isDismissing = false
 
     open override func viewDidLoad() {
         super.viewDidLoad()
 
         setViewHierarchy()
         setLayout()
-        initHeaderFooterViewHeight()
         setPagingViewController()
     }
 
@@ -51,9 +51,6 @@ open class IMImageViewer: UIPageViewController {
             headerView.bounds.size.width = self.view.bounds.width
             headerView.sizeToFit()
             headerView.frame.origin = CGPoint(x: 0, y: view.safeAreaInsets.top + LayoutConstants.defaultTopMargin)
-
-            // tmp
-            headerView.backgroundColor = .green
         }
 
         if let footerView {
@@ -61,15 +58,7 @@ open class IMImageViewer: UIPageViewController {
             footerView.bounds.size.width = self.view.bounds.width
             footerView.sizeToFit()
             footerView.frame.origin = CGPoint(x: 0, y: self.view.bounds.height - footerView.bounds.height - view.safeAreaInsets.bottom)
-
-            // tmp
-            footerView.backgroundColor = .blue
         }
-    }
-
-    private func initHeaderFooterViewHeight() {
-        LayoutConstants.headerViewHeight = headerView?.frame.height
-        LayoutConstants.footerViewHeight = footerView?.frame.height
     }
 
     private func setPagingViewController() {
@@ -82,21 +71,16 @@ open class IMImageViewer: UIPageViewController {
 }
 
 extension IMImageViewer: AssetControllerDelegate {
+    public func itemControllerChangeDismissStatus(_ isDismissing: Bool) {
+        self.isDismissing = isDismissing
+    }
+
     public func itemController(_ controller: AssetController, didSwipeToDismissWithDistanceToEdge distance: CGFloat) {
-
-//        if decorationViewsHidden == false {
-
+        if isDismissing {
             let alpha = 1 - distance * 6
             headerView?.alpha = alpha
             footerView?.alpha = alpha
-
-//            if controller is VideoViewController {
-//                scrubber.alpha = alpha
-//            }
-//        }
-
-//        self.overlayView.blurringView.alpha = 1 - distance
-//        self.overlayView.colorView.alpha = 1 - distance
+        }
     }
 
     public func itemControllerDidFinishSwipeToDismissSuccessfully() {

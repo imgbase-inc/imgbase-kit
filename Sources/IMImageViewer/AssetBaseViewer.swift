@@ -21,7 +21,7 @@ open class AssetBaseViewer: UIViewController, UIGestureRecognizerDelegate {
     private let swipeDismissRecognizer = UIPanGestureRecognizer()
 
     private var swipeDismissTransition: SwipeDismissTransition?
-
+    
     // tmp
     let assetView: UIImageView = UIImageView(image: UIImage(data: try! Data(contentsOf: URL(string: "https://picsum.photos/300/700")!))!)
 
@@ -78,8 +78,8 @@ open class AssetBaseViewer: UIViewController, UIGestureRecognizerDelegate {
 
         NSLayoutConstraint.activate([
             scrollView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: (LayoutConstants.headerViewHeight ?? 0) + LayoutConstants.defaultTopMargin),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -(LayoutConstants.footerViewHeight ?? 0))
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: LayoutConstants.headerViewHeight + LayoutConstants.defaultTopMargin),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -LayoutConstants.footerViewHeight)
         ])
     }
 
@@ -162,10 +162,16 @@ extension AssetBaseViewer {
         switch recognizer.state {
         case .began:
             swipeDismissTransition = SwipeDismissTransition(scrollView: self.scrollView)
+
+            delegate?.itemControllerChangeDismissStatus(true)
         case .changed:
             self.handleSwipeToDismissInProgress(forTouchPoint: currentTouchPoint)
+
+            delegate?.itemControllerChangeDismissStatus(true)
         case .ended:
             self.handleSwipeToDismissEnded(finalVelocity: currentVelocity, finalTouchPoint: currentTouchPoint)
+
+            delegate?.itemControllerChangeDismissStatus(false)
         default:
             break
         }
@@ -235,10 +241,10 @@ extension AssetBaseViewer: AssetController {
 
     public var isInitialController: Bool {
         get {
-            return isInitialController
+            return self.isInitialController
         }
         set {
-            isInitialController = newValue
+            self.isInitialController = newValue
         }
     }
 
