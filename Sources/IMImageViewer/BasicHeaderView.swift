@@ -26,21 +26,15 @@ open class BasicHeaderView: UIView {
         return button
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    convenience init() {
+        self.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: LayoutConstants.footerViewHeight))
 
         self.addSubview(selectButton)
         self.addSubview(closeButton)
 
-        self.backgroundColor = .black
-
         setLayout()
     }
-
-    required public init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
+    
     private func setLayout() {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         selectButton.translatesAutoresizingMaskIntoConstraints = false

@@ -15,9 +15,14 @@ enum LayoutConstants {
 }
 
 open class IMImageViewer: UIPageViewController {
-    open var headerView: UIView? = BasicHeaderView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: LayoutConstants.headerViewHeight))
-    open var footerView: UIView? = BasicFooterView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: LayoutConstants.footerViewHeight))
+    open var headerView: UIView? = BasicHeaderView()
+    open var footerView: UIView? = BasicFooterView()
 
+    private let overlayView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        return view
+    }()
     open var assetViewer = AssetBaseViewer()
     private let pagingDataSource = PagingDataSource()
     private var isDismissing = false
@@ -43,6 +48,9 @@ open class IMImageViewer: UIPageViewController {
         if let footerView {
             self.view.addSubview(footerView)
         }
+
+        self.view.addSubview(overlayView)
+        self.view.sendSubviewToBack(overlayView)
     }
 
     private func setLayout() {
@@ -59,6 +67,15 @@ open class IMImageViewer: UIPageViewController {
             footerView.sizeToFit()
             footerView.frame.origin = CGPoint(x: 0, y: self.view.bounds.height - footerView.bounds.height - view.safeAreaInsets.bottom)
         }
+
+        overlayView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            overlayView.topAnchor.constraint(equalTo: view.topAnchor),
+            overlayView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            overlayView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            overlayView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
 
     private func setPagingViewController() {
@@ -80,6 +97,7 @@ extension IMImageViewer: AssetControllerDelegate {
             let alpha = 1 - distance * 6
             headerView?.alpha = alpha
             footerView?.alpha = alpha
+            overlayView.alpha = 1 - distance
         }
     }
 
