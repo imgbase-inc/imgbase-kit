@@ -15,7 +15,7 @@ internal struct InfinityRingView: View {
     @State private var rotationSpeed = 0.9
 
     private var gradient: AngularGradient {
-        AngularGradient(gradient: Gradient(colors: [hudSetting.foregroundColor, .clear]),
+        AngularGradient(gradient: Gradient(colors: [.clear, hudSetting.foregroundColor]),
                                             center: .center,
                                             startAngle: .degrees(0),
                                             endAngle: .degrees(360))
