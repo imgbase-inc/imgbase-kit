@@ -34,8 +34,7 @@ open class NibUIButton: UIButton, NibUIBase {
             containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
             
             addSubview(containerView)
-            containerView.frame = bounds
-            containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            addSubviewToFillConstraints(containerView)
             containerView.isUserInteractionEnabled = false
         }
     }
