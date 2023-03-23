@@ -34,7 +34,8 @@ open class NibUICollectionViewCell: UICollectionViewCell, NibUIBase {
             containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
             
             contentView.addSubview(containerView)
-            contentView.addSubviewToFillConstraints(containerView)
+            containerView.frame = bounds
+            containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         }
     }
 }

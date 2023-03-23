@@ -34,7 +34,8 @@ open class NibUIView: UIView, NibUIBase {
             containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
 
             addSubview(containerView)
-            addSubviewToFillConstraints(containerView)
+            containerView.frame = bounds
+            containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         }
     }
 }
