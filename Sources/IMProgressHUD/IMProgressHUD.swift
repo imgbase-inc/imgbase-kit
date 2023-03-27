@@ -20,7 +20,8 @@ public class IMProgressHUD {
             fatalError("ProgressView를 생성할 수 없습니다.")
         }
 
-        view.center = CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
 
         return view
     }()
@@ -30,6 +31,12 @@ public class IMProgressHUD {
 
         let mainWindow = UIApplication.shared.windows.first ?? UIWindow()
         mainWindow.addSubview(progressView)
+
+        NSLayoutConstraint.activate([
+            progressView.centerXAnchor.constraint(equalTo: mainWindow.centerXAnchor),
+            progressView.centerYAnchor.constraint(equalTo: mainWindow.centerYAnchor)
+        ])
+
         contentViewAnimationAssistant.showWithAnimation()
     }
 
