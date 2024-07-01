@@ -10,34 +10,34 @@
 import UIKit
 
 open class NibUIControl: UIControl, NibUIBase {
-    @IBOutlet public weak var containerView: UIView!
+  @IBOutlet public weak var containerView: UIView!
 
-    open var nibName: String? {
-        return nil
+  open var nibName: String? {
+    return nil
+  }
+
+  open var bundle: Bundle? {
+    return nil
+  }
+
+  public override init(frame: CGRect) {
+    super.init(frame: frame)
+    commonInit()
+  }
+
+  required public init?(coder: NSCoder) {
+    super.init(coder: coder)
+    commonInit()
+  }
+
+  open func commonInit() {
+    if let nibName {
+      containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
+
+      addSubview(containerView)
+      containerView.frame = bounds
+      containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+      containerView.isUserInteractionEnabled = false
     }
-
-    open var bundle: Bundle? {
-        return nil
-    }
-
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-
-    required public init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-
-    open func commonInit() {
-        if let nibName {
-            containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
-
-            addSubview(containerView)
-            containerView.frame = bounds
-            containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            containerView.isUserInteractionEnabled = false
-        }
-    }
+  }
 }

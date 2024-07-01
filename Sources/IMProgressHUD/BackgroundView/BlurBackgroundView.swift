@@ -9,23 +9,23 @@
 import SwiftUI
 
 internal struct BlurBackgroundView: View {
-    private struct BackdropView: UIViewRepresentable {
-        func makeUIView(context: Context) -> UIVisualEffectView {
-            let view = UIVisualEffectView()
-            let blur = UIBlurEffect(style: .extraLight)
-            let animator = UIViewPropertyAnimator()
-            animator.addAnimations { view.effect = blur }
-            animator.fractionComplete = 0
-            animator.stopAnimation(true)
-            animator.finishAnimation(at: .start)
-            return view
-        }
-
-        func updateUIView(_ uiView: UIVisualEffectView, context: Context) { }
+  private struct BackdropView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIVisualEffectView {
+      let view = UIVisualEffectView()
+      let blur = UIBlurEffect(style: .extraLight)
+      let animator = UIViewPropertyAnimator()
+      animator.addAnimations { view.effect = blur }
+      animator.fractionComplete = 0
+      animator.stopAnimation(true)
+      animator.finishAnimation(at: .start)
+      return view
     }
-
-    var body: some View {
-        BackdropView().blur(radius: 2)
-    }
+    
+    func updateUIView(_ uiView: UIVisualEffectView, context: Context) { }
+  }
+  
+  var body: some View {
+    BackdropView().blur(radius: 2)
+  }
 }
 

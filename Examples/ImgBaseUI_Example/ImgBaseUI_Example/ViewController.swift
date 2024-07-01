@@ -9,45 +9,45 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var tableView: UITableView!
 
-    private let selection: [(String, AnyObject)] = [
-        ("NibUIView", NibUIViewController()),
-        ("NibUIButton", NibUIButtonViewController()),
-        ("NibUITableViewCell", NibUITableViewCellViewController()),
-        ("NibUICollectionViewCell", NibUICollectionViewCellViewController()),
-        ("NibUICollectionReusableView", NibUICollectionReusableViewController()),
-        ("NibUIControl", NibUIControlViewController())
-    ]
+  private let selection: [(String, AnyObject)] = [
+    ("NibUIView", NibUIViewController()),
+    ("NibUIButton", NibUIButtonViewController()),
+    ("NibUITableViewCell", NibUITableViewCellViewController()),
+    ("NibUICollectionViewCell", NibUICollectionViewCellViewController()),
+    ("NibUICollectionReusableView", NibUICollectionReusableViewController()),
+    ("NibUIControl", NibUIControlViewController())
+  ]
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-        tableView.dataSource = self
-        tableView.delegate = self
+    tableView.dataSource = self
+    tableView.delegate = self
 
-        navigationController?.navigationBar.topItem?.title = "ImgBaseUI"
-    }
+    navigationController?.navigationBar.topItem?.title = "ImgBaseUI"
+  }
 }
 
 extension ViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selection.count
-    }
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return selection.count
+  }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
 
-        cell.textLabel?.text = selection[indexPath.row].0
-        cell.accessoryType = .disclosureIndicator
+    cell.textLabel?.text = selection[indexPath.row].0
+    cell.accessoryType = .disclosureIndicator
 
-        return cell
-    }
+    return cell
+  }
 }
 
 extension ViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let viewController = selection[indexPath.row].1 as? UIViewController else { return }
-        navigationController?.pushViewController(viewController, animated: true)
-    }
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let viewController = selection[indexPath.row].1 as? UIViewController else { return }
+    navigationController?.pushViewController(viewController, animated: true)
+  }
 }

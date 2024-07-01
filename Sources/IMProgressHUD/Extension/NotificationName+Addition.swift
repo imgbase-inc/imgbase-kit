@@ -9,5 +9,5 @@
 import Foundation
 
 extension Notification.Name {
-    static let disappearContentView = Notification.Name(rawValue: "IMProgressHUD-ContentViewDisappear")
+  static let disappearContentView = Notification.Name(rawValue: "IMProgressHUD-ContentViewDisappear")
 }

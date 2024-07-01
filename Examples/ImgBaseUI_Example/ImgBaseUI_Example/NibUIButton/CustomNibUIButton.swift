@@ -9,15 +9,15 @@ import UIKit
 import ImgBaseUI
 
 class CustomNibUIButton: NibUIButton {
-    @IBOutlet weak var innerView: UIView!
-    @IBOutlet weak var label: UILabel!
+  @IBOutlet weak var innerView: UIView!
+  @IBOutlet weak var label: UILabel!
 
-    override var nibName: String? {
-        return "CustomNibUIButton"
-    }
+  override var nibName: String? {
+    return "CustomNibUIButton"
+  }
 
-    func setColor(isWhite: Bool) {
-        innerView.backgroundColor = isWhite ? .white : .darkGray
-        label.textColor = isWhite ? .darkGray : .white
-    }
+  func setColor(isWhite: Bool) {
+    innerView.backgroundColor = isWhite ? .white : .darkGray
+    label.textColor = isWhite ? .darkGray : .white
+  }
 }

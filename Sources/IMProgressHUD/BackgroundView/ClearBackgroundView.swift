@@ -9,7 +9,7 @@
 import SwiftUI
 
 internal struct ClearBackgroundView: View {
-    var body: some View {
-        Color.clear
-    }
+  var body: some View {
+    Color.clear
+  }
 }

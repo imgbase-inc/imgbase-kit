@@ -9,12 +9,12 @@ import UIKit
 import ImgBaseUI
 
 class CustomNibUICollectionReusableView: NibUICollectionReusableView {
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subTitleLabel: UILabel!
+  @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var subTitleLabel: UILabel!
 
-    override var nibName: String? {
-        return "CustomNibUICollectionReusableView"
-    }
+  override var nibName: String? {
+    return "CustomNibUICollectionReusableView"
+  }
 
-    static let reuseIdentifier = "CustomNibUICollectionReusableViewReuseIdentifier"
+  static let reuseIdentifier = "CustomNibUICollectionReusableViewReuseIdentifier"
 }

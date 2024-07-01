@@ -10,20 +10,20 @@ import UIKit
 import ImgBaseUI
 
 class CustomNibUIView: NibUIView {
-    @IBOutlet weak var label: UILabel!
+  @IBOutlet weak var label: UILabel!
 
-    override var nibName: String? {
-        return "CustomNibUIView"
-    }
+  override var nibName: String? {
+    return "CustomNibUIView"
+  }
 
-    override func commonInit() {
-        super.commonInit()
+  override func commonInit() {
+    super.commonInit()
 
-        label.translatesAutoresizingMaskIntoConstraints = false
+    label.translatesAutoresizingMaskIntoConstraints = false
 
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-        ])
-    }
+    NSLayoutConstraint.activate([
+      label.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+      label.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+    ])
+  }
 }

@@ -9,34 +9,34 @@
 import UIKit
 
 open class NibUIButton: UIButton, NibUIBase {
-    @IBOutlet public weak var containerView: UIView!
-    
-    open var nibName: String? {
-        return nil
-    }
-    
-    open var bundle: Bundle? {
-        return nil
-    }
+  @IBOutlet public weak var containerView: UIView!
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
+  open var nibName: String? {
+    return nil
+  }
+
+  open var bundle: Bundle? {
+    return nil
+  }
+
+  public override init(frame: CGRect) {
+    super.init(frame: frame)
+    commonInit()
+  }
+
+  required public init?(coder: NSCoder) {
+    super.init(coder: coder)
+    commonInit()
+  }
+
+  open func commonInit() {
+    if let nibName {
+      containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
+
+      addSubview(containerView)
+      containerView.frame = bounds
+      containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+      containerView.isUserInteractionEnabled = false
     }
-    
-    required public init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-    
-    open func commonInit() {
-        if let nibName {
-            containerView = viewFromNibForClass(nibName: nibName, withBundle: bundle)
-            
-            addSubview(containerView)
-            containerView.frame = bounds
-            containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            containerView.isUserInteractionEnabled = false
-        }
-    }
+  }
 }
