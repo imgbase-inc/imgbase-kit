@@ -12,6 +12,10 @@ public struct UIViewRepresented<UIViewType: UIView>: UIViewRepresentable {
   let makeUIView: (Context) -> UIViewType
   let updateUIView: (UIViewType, Context) -> Void = { _, _ in }
 
+  public init(_ makeUIView: @escaping (Context) -> UIViewType) {
+    self.makeUIView = makeUIView
+  }
+
   public func makeUIView(context: Context) -> UIViewType {
     self.makeUIView(context)
   }
