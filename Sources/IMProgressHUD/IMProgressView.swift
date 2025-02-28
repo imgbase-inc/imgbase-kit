@@ -37,15 +37,17 @@ internal struct IMProgressView: View {
           }
         }
         .frame(
-          minWidth: hudSetting.minimumSize.width - LayoutConstant.contentViewPadding*2,
-          minHeight: hudSetting.minimumSize.height - LayoutConstant.contentViewPadding*2
+          minWidth: hudSetting.minimumSize.width - LayoutConstant.contentViewPadding * 2,
+          minHeight: hudSetting.minimumSize.height - LayoutConstant.contentViewPadding * 2
         )
         .padding(LayoutConstant.contentViewPadding)
-        .background(hudSetting.backgroundColor
-          .clipShape(RoundedRectangle(cornerRadius: hudSetting.cornerRadius)))
+        .background(
+          hudSetting.backgroundColor
+            .clipShape(RoundedRectangle(cornerRadius: hudSetting.cornerRadius))
+        )
         .transition(.scale(scale: 0.4).combined(with: .opacity))
         .zIndex(1)
-        .onDisappear() {
+        .onDisappear {
           contentViewAnimationAssistant.postDisappearNotification()
           contentViewAnimationAssistant.removeDisappearObserver()
         }

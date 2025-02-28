@@ -6,8 +6,8 @@
 //  Copyright © 2022 ImgBase, Inc. All rights reserved.
 //
 
-import UIKit
 import ImgBaseUI
+import UIKit
 
 class CustomNibUIView: NibUIView {
   @IBOutlet weak var label: UILabel!
@@ -23,7 +23,7 @@ class CustomNibUIView: NibUIView {
 
     NSLayoutConstraint.activate([
       label.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-      label.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+      label.centerYAnchor.constraint(equalTo: self.centerYAnchor),
     ])
   }
 }

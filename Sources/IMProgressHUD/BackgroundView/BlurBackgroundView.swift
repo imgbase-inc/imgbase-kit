@@ -20,12 +20,11 @@ internal struct BlurBackgroundView: View {
       animator.finishAnimation(at: .start)
       return view
     }
-    
-    func updateUIView(_ uiView: UIVisualEffectView, context: Context) { }
+
+    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {}
   }
-  
+
   var body: some View {
     BackdropView().blur(radius: 2)
   }
 }
-

@@ -10,23 +10,25 @@ import SwiftUI
 
 internal struct InfinityRingView: View {
   @EnvironmentObject var hudSetting: HUDSetting
-  
+
   @State private var isRotating = 0.0
   @State private var rotationSpeed = 0.9
-  
+
   private var gradient: AngularGradient {
-    AngularGradient(gradient: Gradient(colors: [hudSetting.backgroundColor, hudSetting.foregroundColor]),
-                    center: .center,
-                    startAngle: .degrees(0),
-                    endAngle: .degrees(360))
+    AngularGradient(
+      gradient: Gradient(colors: [hudSetting.backgroundColor, hudSetting.foregroundColor]),
+      center: .center,
+      startAngle: .degrees(0),
+      endAngle: .degrees(360)
+    )
   }
-  
+
   var body: some View {
     Circle()
       .trim(from: 0, to: 1)
       .stroke(gradient, style: StrokeStyle(lineWidth: hudSetting.ringThickness, lineCap: .round))
       .rotationEffect(.degrees(isRotating))
-      .onAppear() {
+      .onAppear {
         withAnimation(.linear(duration: 1).speed(rotationSpeed).repeatForever(autoreverses: false)) {
           isRotating = 360.0
         }

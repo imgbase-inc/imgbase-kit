@@ -6,7 +6,6 @@
 //  Copyright © 2023 ImgBase, Inc. All rights reserved.
 //
 
-
 import UIKit
 
 open class NibUIControl: UIControl, NibUIBase {

@@ -35,11 +35,14 @@ class NibUICollectionViewCellViewController: UIViewController {
 
     collectionView.dataSource = self
     collectionView.delegate = self
-    collectionView.register(CustomNibUICollectionViewCell.self, forCellWithReuseIdentifier: CustomNibUICollectionViewCell.reuseIdentifier)
+    collectionView.register(
+      CustomNibUICollectionViewCell.self,
+      forCellWithReuseIdentifier: CustomNibUICollectionViewCell.reuseIdentifier
+    )
 
     setLayout()
   }
-  
+
   private func setLayout() {
     self.view.addSubview(collectionView)
     collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +51,7 @@ class NibUICollectionViewCellViewController: UIViewController {
       collectionView.topAnchor.constraint(equalTo: view.topAnchor),
       collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
       collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+      collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
     ])
   }
 }
@@ -59,7 +62,12 @@ extension NibUICollectionViewCellViewController: UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomNibUICollectionViewCell.reuseIdentifier, for: indexPath) as? CustomNibUICollectionViewCell else {
+    guard
+      let cell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: CustomNibUICollectionViewCell.reuseIdentifier,
+        for: indexPath
+      ) as? CustomNibUICollectionViewCell
+    else {
       fatalError("CustomNibUICollectionViewCell dequeue reusable cell 을 찾을 수 없습니다.")
     }
 
@@ -72,8 +80,14 @@ extension NibUICollectionViewCellViewController: UICollectionViewDataSource {
 }
 
 extension NibUICollectionViewCellViewController: UICollectionViewDelegateFlowLayout {
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let width = (collectionView.frame.width - LayoutConstants.collectionViewWidthMargin) / LayoutConstants.collectionViewNumberOfCellInLine
+  func collectionView(
+    _ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    sizeForItemAt indexPath: IndexPath
+  ) -> CGSize {
+    let width =
+      (collectionView.frame.width - LayoutConstants.collectionViewWidthMargin)
+      / LayoutConstants.collectionViewNumberOfCellInLine
     let height = width * LayoutConstants.collectionViewCellRatio
 
     return CGSize(width: width, height: height)

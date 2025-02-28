@@ -5,8 +5,8 @@
 //  Created by odong on 2022/12/01.
 //
 
-import UIKit
 import ImgBaseUI
+import UIKit
 
 class CustomNibUIButton: NibUIButton {
   @IBOutlet weak var innerView: UIView!

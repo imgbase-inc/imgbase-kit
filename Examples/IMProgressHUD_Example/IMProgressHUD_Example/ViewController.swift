@@ -5,8 +5,8 @@
 //  Created by odong on 2022/12/30.
 //
 
-import UIKit
 import IMProgressHUD
+import UIKit
 
 // MARK: LayoutConstants
 extension ViewController {
@@ -36,28 +36,43 @@ final class ViewController: UIViewController {
   private typealias SelectionGroup = (groupName: String, selections: [Selection])
 
   private let selection: [SelectionGroup] = [
-    ("Basic", [
-      .infiniteRing,
-      .infiniteRingWithText,
-      .customImage,
-      .customImageWithText
-    ]),
-    ("Dismiss", [
-      .dismiss
-    ]),
-    ("Success / Fail", [
-      .success,
-      .fail
-    ]),
-    ("Background", [
-      .noneBackground,
-      .blackBackground,
-      .blurBackground
-    ]),
-    ("User Interaction", [
-      .userInteratable,
-      .notUserInteractable
-    ])
+    (
+      "Basic",
+      [
+        .infiniteRing,
+        .infiniteRingWithText,
+        .customImage,
+        .customImageWithText,
+      ]
+    ),
+    (
+      "Dismiss",
+      [
+        .dismiss
+      ]
+    ),
+    (
+      "Success / Fail",
+      [
+        .success,
+        .fail,
+      ]
+    ),
+    (
+      "Background",
+      [
+        .noneBackground,
+        .blackBackground,
+        .blurBackground,
+      ]
+    ),
+    (
+      "User Interaction",
+      [
+        .userInteratable,
+        .notUserInteractable,
+      ]
+    ),
   ]
 
   @IBOutlet weak var tableView: UITableView!

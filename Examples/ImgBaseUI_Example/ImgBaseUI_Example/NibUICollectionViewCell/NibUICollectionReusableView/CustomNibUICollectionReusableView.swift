@@ -5,8 +5,8 @@
 //  Created by odong on 2022/12/29.
 //
 
-import UIKit
 import ImgBaseUI
+import UIKit
 
 class CustomNibUICollectionReusableView: NibUICollectionReusableView {
   @IBOutlet weak var titleLabel: UILabel!

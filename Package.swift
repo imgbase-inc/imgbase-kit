@@ -13,7 +13,7 @@ let package = Package(
     .library(
       name: "IMProgressHUD",
       targets: ["IMProgressHUD"]
-    )
+    ),
   ],
   dependencies: [],
   targets: [
@@ -31,6 +31,6 @@ let package = Package(
       name: "IMProgressHUD",
       dependencies: [],
       path: "Sources/IMProgressHUD"
-    )
+    ),
   ]
 )

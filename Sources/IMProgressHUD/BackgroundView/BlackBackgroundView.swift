@@ -10,7 +10,7 @@ import SwiftUI
 
 internal struct BlackBackgroundView: View {
   @State private var opacity: Double = 0.2
-  
+
   var body: some View {
     Color.black
       .opacity(opacity)

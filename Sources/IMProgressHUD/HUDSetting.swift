@@ -41,10 +41,7 @@ internal class HUDSetting: ObservableObject {
   @Published var minimumDismissTimeInterval: TimeInterval = 2.0
 
   var displayDurationForString: TimeInterval {
-    get {
-      let max = Double(textString?.count ?? 0) * 0.06 + minimumDismissTimeInterval
-      return min(max, maximumDismissTimeInterval)
-    }
+    let max = Double(textString?.count ?? 0) * 0.06 + minimumDismissTimeInterval
+    return min(max, maximumDismissTimeInterval)
   }
 }
-

@@ -9,7 +9,10 @@ import UIKit
 
 extension UIView {
   func viewFromNibForClass(nibName: String, withBundle bundle: Bundle?) -> UIView {
-    guard let nibView: UIView = UINib.init(nibName: nibName, bundle: bundle).instantiate(withOwner: self, options: nil).first as? UIView else {
+    guard
+      let nibView: UIView = UINib.init(nibName: nibName, bundle: bundle).instantiate(withOwner: self, options: nil)
+        .first as? UIView
+    else {
       fatalError("\(nibName) Nib을 찾을 수 없습니다.")
     }
     return nibView
@@ -22,7 +25,7 @@ extension UIView {
       subview.leadingAnchor.constraint(equalTo: leadingAnchor),
       subview.trailingAnchor.constraint(equalTo: trailingAnchor),
       subview.topAnchor.constraint(equalTo: topAnchor),
-      subview.bottomAnchor.constraint(equalTo: bottomAnchor)
+      subview.bottomAnchor.constraint(equalTo: bottomAnchor),
     ])
   }
 }
