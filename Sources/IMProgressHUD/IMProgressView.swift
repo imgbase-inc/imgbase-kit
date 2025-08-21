@@ -14,7 +14,7 @@ extension IMProgressView {
   }
 }
 
-public struct IMProgressView: View {
+internal struct IMProgressView: View {
   @EnvironmentObject private var hudSetting: HUDSetting
   @EnvironmentObject private var contentViewAnimationAssistant: ContentViewAnimationAssistant
 
