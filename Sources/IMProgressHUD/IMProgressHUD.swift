@@ -104,12 +104,13 @@ public class IMProgressHUD {
   }
 
   public static func dismiss() {
-    guard contentViewAnimationAssistant.isPresenting else { return }
-
     contentViewAnimationAssistant.addDisappearObserver(self, selector: #selector(dismissProgressView))
     contentViewAnimationAssistant.dismissWithAnimation()
-
     setIsUserInteractionEnabled(true)
+    progressView.constraints.forEach { constraint in
+      constraint.isActive = false
+    }
+    progressView.removeFromSuperview()
   }
 
   private static func timeOutDismiss() {
