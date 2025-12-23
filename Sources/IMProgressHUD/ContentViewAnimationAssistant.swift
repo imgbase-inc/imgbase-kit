@@ -16,13 +16,8 @@ internal class ContentViewAnimationAssistant: ObservableObject {
   private var dismissCompletionHandler: (() -> Void)?
 
   func showWithAnimation() {
-    // 1. 먼저 상태 변경 (guard 조건을 위해)
-    self.isPresenting = true
-
-    // 2. withAnimation으로 뷰 업데이트 트리거하여 transition 애니메이션 적용
     withAnimation(.easeInOut(duration: animationTime)) {
-      // 이미 isPresenting은 true이므로 guard는 정상 작동
-      self.objectWillChange.send()
+      self.isPresenting = true
     }
   }
 
