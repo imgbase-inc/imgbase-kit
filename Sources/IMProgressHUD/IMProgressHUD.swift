@@ -12,6 +12,8 @@ public class IMProgressHUD {
   @ObservedObject static var hudSetting = HUDSetting()
   @ObservedObject private static var contentViewAnimationAssistant = ContentViewAnimationAssistant()
 
+  private static var isDismissing = false
+
   private static let progressView: UIView = {
     guard
       let view = UIHostingController(
@@ -105,11 +107,15 @@ public class IMProgressHUD {
 
   public static func dismiss() {
     guard contentViewAnimationAssistant.isPresenting else { return }
+    guard !isDismissing else { return }
 
-    contentViewAnimationAssistant.addDisappearObserver(self, selector: #selector(dismissProgressView))
-    contentViewAnimationAssistant.dismissWithAnimation()
+    isDismissing = true
 
-    setIsUserInteractionEnabled(true)
+    contentViewAnimationAssistant.dismissWithAnimation { [weak progressView] in
+      progressView?.removeFromSuperview()
+      setIsUserInteractionEnabled(true)
+      isDismissing = false
+    }
   }
 
   private static func timeOutDismiss() {
@@ -132,10 +138,6 @@ public class IMProgressHUD {
     }
 
     RunLoop.main.add(timer, forMode: .common)
-  }
-
-  @objc private static func dismissProgressView() {
-    progressView.removeFromSuperview()
   }
 }
 

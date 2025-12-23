@@ -48,8 +48,7 @@ internal struct IMProgressView: View {
         .transition(.scale(scale: 0.4).combined(with: .opacity))
         .zIndex(1)
         .onDisappear {
-          contentViewAnimationAssistant.postDisappearNotification()
-          contentViewAnimationAssistant.removeDisappearObserver()
+          contentViewAnimationAssistant.notifyDismissComplete()
         }
       }
     }

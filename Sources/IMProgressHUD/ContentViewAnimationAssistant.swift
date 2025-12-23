@@ -12,32 +12,31 @@ internal class ContentViewAnimationAssistant: ObservableObject {
   @Published var isPresenting = false
   private let animationTime: Double = 0.25
 
+  // 애니메이션 완료 콜백
+  private var dismissCompletionHandler: (() -> Void)?
+
   func showWithAnimation() {
     withAnimation(.easeInOut(duration: animationTime)) {
       self.isPresenting = true
     }
   }
 
-  func dismissWithAnimation() {
+  func dismissWithAnimation(completion: @escaping () -> Void) {
+    dismissCompletionHandler = completion
+
     withAnimation(.easeInOut(duration: animationTime)) {
       self.isPresenting = false
     }
+
+    // 안전장치: 애니메이션 시간 + 여유시간 후 강제 실행
+    DispatchQueue.main.asyncAfter(deadline: .now() + animationTime + 0.1) { [weak self] in
+      self?.dismissCompletionHandler?()
+      self?.dismissCompletionHandler = nil
+    }
   }
 
-  func postDisappearNotification() {
-    NotificationCenter.default.post(name: Notification.Name.disappearContentView, object: nil)
-  }
-
-  func addDisappearObserver(_ observer: Any, selector: Selector) {
-    NotificationCenter.default.addObserver(
-      observer,
-      selector: selector,
-      name: Notification.Name.disappearContentView,
-      object: nil
-    )
-  }
-
-  func removeDisappearObserver() {
-    NotificationCenter.default.removeObserver(self, name: Notification.Name.disappearContentView, object: nil)
+  func notifyDismissComplete() {
+    dismissCompletionHandler?()
+    dismissCompletionHandler = nil
   }
 }
