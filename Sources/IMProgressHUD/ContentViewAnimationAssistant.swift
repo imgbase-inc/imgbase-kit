@@ -16,16 +16,23 @@ internal class ContentViewAnimationAssistant: ObservableObject {
   private var dismissCompletionHandler: (() -> Void)?
 
   func showWithAnimation() {
-    // withAnimation 제거: 상태를 즉시 변경
-    // 애니메이션은 IMProgressView의 .animation() modifier가 처리
+    // 1. 먼저 상태 변경 (guard 조건을 위해)
     self.isPresenting = true
+
+    // 2. withAnimation으로 뷰 업데이트 트리거하여 transition 애니메이션 적용
+    withAnimation(.easeInOut(duration: animationTime)) {
+      // 이미 isPresenting은 true이므로 guard는 정상 작동
+      self.objectWillChange.send()
+    }
   }
 
   func dismissWithAnimation(completion: @escaping () -> Void) {
     dismissCompletionHandler = completion
 
-    // withAnimation 제거: 상태를 즉시 변경
-    self.isPresenting = false
+    // withAnimation 내에서 상태 변경하여 transition 애니메이션 적용
+    withAnimation(.easeInOut(duration: animationTime)) {
+      self.isPresenting = false
+    }
 
     // 안전장치: 애니메이션 시간 + 여유시간 후 강제 실행
     DispatchQueue.main.asyncAfter(deadline: .now() + animationTime + 0.1) { [weak self] in

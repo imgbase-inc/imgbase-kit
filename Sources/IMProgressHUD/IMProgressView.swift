@@ -46,7 +46,6 @@ internal struct IMProgressView: View {
             .clipShape(RoundedRectangle(cornerRadius: hudSetting.cornerRadius))
         )
         .transition(.scale(scale: 0.4).combined(with: .opacity))
-        .animation(.easeInOut(duration: 0.25), value: contentViewAnimationAssistant.isPresenting)
         .zIndex(1)
         .onDisappear {
           contentViewAnimationAssistant.notifyDismissComplete()
