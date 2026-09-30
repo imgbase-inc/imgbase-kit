@@ -12,7 +12,8 @@ public class IMProgressHUD {
   @ObservedObject static var hudSetting = HUDSetting()
   @ObservedObject private static var contentViewAnimationAssistant = ContentViewAnimationAssistant()
 
-  private static var isDismissing = false
+  // 이전 표시의 자동 닫기 타이머가 이후 표시를 닫지 않도록 하나만 유지한다.
+  private static var timeoutTimer: Timer?
 
   private static let progressView: UIView = {
     guard
@@ -31,16 +32,35 @@ public class IMProgressHUD {
     return view
   }()
 
+  /// UIKit·SwiftUI 상태를 다루므로 백그라운드 스레드에서 호출돼도 메인 스레드에서 실행한다.
+  /// 백그라운드 호출은 메인 큐에 비동기로 예약되므로, 그사이 메인 스레드에서 호출한 show/dismiss보다 늦게 실행될 수 있다.
+  private static func performOnMain(_ work: @escaping () -> Void) {
+    if Thread.isMainThread {
+      work()
+    } else {
+      DispatchQueue.main.async(execute: work)
+    }
+  }
+
   private static func show() {
+    // 사라지는 중에 다시 표시하면 대기 중인 제거를 취소한다.
+    // 취소하지 않으면 이전 dismiss의 완료 처리가 새로 표시한 뷰를 제거해 isPresenting만 true로 남는다.
+    if contentViewAnimationAssistant.isDismissing {
+      contentViewAnimationAssistant.cancelDismiss()
+    }
     guard !contentViewAnimationAssistant.isPresenting else { return }
 
     let mainWindow = UIApplication.shared.windows.first ?? UIWindow()
-    mainWindow.addSubview(progressView)
+    if progressView.superview !== mainWindow {
+      mainWindow.addSubview(progressView)
 
-    NSLayoutConstraint.activate([
-      progressView.centerXAnchor.constraint(equalTo: mainWindow.centerXAnchor),
-      progressView.centerYAnchor.constraint(equalTo: mainWindow.centerYAnchor),
-    ])
+      NSLayoutConstraint.activate([
+        progressView.centerXAnchor.constraint(equalTo: mainWindow.centerXAnchor),
+        progressView.centerYAnchor.constraint(equalTo: mainWindow.centerYAnchor),
+      ])
+    } else {
+      mainWindow.bringSubviewToFront(progressView)
+    }
 
     contentViewAnimationAssistant.showWithAnimation()
   }
@@ -50,12 +70,14 @@ public class IMProgressHUD {
     isUserInteractionEnabled: Bool = true,
     backgroundType: BackgroundType = .none
   ) {
-    setContentType(.infiniteRing)
-    setTextString(text)
-    setIsUserInteractionEnabled(isUserInteractionEnabled)
-    setBackgroundType(backgroundType)
+    performOnMain {
+      setContentType(.infiniteRing)
+      setTextString(text)
+      setIsUserInteractionEnabled(isUserInteractionEnabled)
+      setBackgroundType(backgroundType)
 
-    show()
+      show()
+    }
   }
 
   public static func show(
@@ -64,13 +86,15 @@ public class IMProgressHUD {
     isUserInteractionEnabled: Bool = true,
     backgroundType: BackgroundType = .none
   ) {
-    setContentType(.image(image))
-    setTextString(text)
-    setIsUserInteractionEnabled(isUserInteractionEnabled)
-    setBackgroundType(backgroundType)
+    performOnMain {
+      setContentType(.image(image))
+      setTextString(text)
+      setIsUserInteractionEnabled(isUserInteractionEnabled)
+      setBackgroundType(backgroundType)
 
-    show()
-    timeOutDismiss()
+      show()
+      timeOutDismiss()
+    }
   }
 
   public static func show(
@@ -79,65 +103,65 @@ public class IMProgressHUD {
     isUserInteractionEnabled: Bool = true,
     backgroundType: BackgroundType = .none
   ) {
-    let img = Image(uiImage: image)
-    setContentType(.image(img))
-    setTextString(text)
-    setIsUserInteractionEnabled(isUserInteractionEnabled)
-    setBackgroundType(backgroundType)
+    performOnMain {
+      let img = Image(uiImage: image)
+      setContentType(.image(img))
+      setTextString(text)
+      setIsUserInteractionEnabled(isUserInteractionEnabled)
+      setBackgroundType(backgroundType)
 
-    show()
-    timeOutDismiss()
+      show()
+      timeOutDismiss()
+    }
   }
 
   public static func showSuccess(text: String? = nil) {
-    setContentType(.success)
-    setTextString(text)
+    performOnMain {
+      setContentType(.success)
+      setTextString(text)
 
-    show()
-    timeOutDismiss()
+      show()
+      timeOutDismiss()
+    }
   }
 
   public static func showFail(text: String? = nil) {
-    setContentType(.fail)
-    setTextString(text)
+    performOnMain {
+      setContentType(.fail)
+      setTextString(text)
 
-    show()
-    timeOutDismiss()
+      show()
+      timeOutDismiss()
+    }
   }
 
   public static func dismiss() {
-    guard contentViewAnimationAssistant.isPresenting else { return }
-    guard !isDismissing else { return }
+    performOnMain {
+      guard contentViewAnimationAssistant.isPresenting else { return }
+      guard !contentViewAnimationAssistant.isDismissing else { return }
 
-    isDismissing = true
+      invalidateTimeoutTimer()
 
-    contentViewAnimationAssistant.dismissWithAnimation { [weak progressView] in
-      progressView?.removeFromSuperview()
-      setIsUserInteractionEnabled(true)
-      isDismissing = false
+      contentViewAnimationAssistant.dismissWithAnimation { [weak progressView] in
+        progressView?.removeFromSuperview()
+        setIsUserInteractionEnabled(true)
+      }
     }
   }
 
   private static func timeOutDismiss() {
-    let displayDuration = hudSetting.displayDurationForString
-    var progress: Double = 0.0
-    let timer = Timer(timeInterval: 0.01, repeats: true) { timer in
-      guard contentViewAnimationAssistant.isPresenting else {
-        timer.invalidate()
-
-        return
-      }
-
-      progress += 0.01
-      progress = min(displayDuration, progress)
-
-      if progress == displayDuration {
-        timer.invalidate()
-        dismiss()
-      }
+    invalidateTimeoutTimer()
+    let timer = Timer(timeInterval: hudSetting.displayDurationForString, repeats: false) { _ in
+      dismiss()
     }
 
+    timeoutTimer = timer
     RunLoop.main.add(timer, forMode: .common)
+  }
+
+  private static func invalidateTimeoutTimer() {
+    timeoutTimer?.invalidate()
+    timeoutTimer = nil
   }
 }
 
